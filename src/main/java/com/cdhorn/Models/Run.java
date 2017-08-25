@@ -17,7 +17,7 @@ public class Run {
     private Time time;
 
     @ManyToOne
-    @JoinColumn(name = "user_data_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public long getId() {
