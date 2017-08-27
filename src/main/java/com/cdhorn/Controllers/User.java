@@ -19,7 +19,7 @@ public class User {
         return "addRun";
     }
 
-    @RequestMapping("/user/updateRun")
+    @RequestMapping("/user/editRun")
     public String updateRun() {
 
         return "editRun";
