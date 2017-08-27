@@ -30,7 +30,8 @@ public class Home {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signup() {
+    public String signup(Model model) {
+        model.addAttribute("user", new User());
         return "signup";
     }
 
@@ -38,7 +39,7 @@ public class Home {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signup(@RequestParam("username") String username,
                          @RequestParam("password") String password,
-                         @RequestParam("age") String age,
+                         @RequestParam("age") int age,
                          @RequestParam("gender") char gender,
                          @RequestParam("city") String city,
                          @RequestParam("state") String state) {
