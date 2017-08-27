@@ -4,6 +4,7 @@ Build an app for runners so they can keep track of their running activity and sh
  
  User stories:
   
+ As an admin I want to see the demographics of users who are signed up for my site to help determine features to be added.
  
  As a visitor I want to see routes that have been made public by users so I can find places to run locally when visiting the area without having to sign up for an account.
  

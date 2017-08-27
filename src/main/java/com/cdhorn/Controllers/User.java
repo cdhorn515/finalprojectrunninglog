@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class User {
 
-    @RequestMapping("/login")
-    public String login() {
+    @RequestMapping("/user")
+    public String userHome() {
 
-        return "login";
+        return "user";
     }
 
-    @RequestMapping("/signup")
-    public String signup() {
+    @RequestMapping("/user/addRun")
+    public String addRun() {
 
-        return "signup";
+        return "addRun";
     }
 
-    @RequestMapping("/")
-    public String index() {
+    @RequestMapping("/user/updateRun")
+    public String updateRun() {
 
-        return "index";
+        return "editRun";
     }
 }
