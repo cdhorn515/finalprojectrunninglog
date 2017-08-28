@@ -23,6 +23,7 @@ public class User implements UserDetails{
     private char gender;
     private String city;
     private String state;
+    private boolean active;
 
     @OneToOne
     @JoinColumn(name = "role_id")
@@ -101,6 +102,14 @@ public class User implements UserDetails{
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
