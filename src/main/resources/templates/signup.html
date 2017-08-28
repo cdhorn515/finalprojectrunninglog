@@ -10,11 +10,7 @@
 <div class="container">
     <h1>Signup page</h1>
 
-    <div class="text-danger" th:text="${error}"></div>
     <form th:action="@{/signup}" th:object="${user}" method="post">
-        <input type="hidden"
-               th:name="${_csrf.parameterName}"
-               th:value="${_csrf.token}"/>
         <input type="text" th:field="*{username}" placeholder="Username"/>
         <input type="password" th:field="*{password}" placeholder="Password"/>
 
@@ -23,7 +19,7 @@
                 <div class="form-group form-inline age">
                     <label for="age" class="col-sm-4 control-label agelabel">Age:</label>
                     <div class="form-inline">
-                        <input type="tel" name="age" th:field="*{age}" class="form-control ageinput" id="age"/>
+                        <input type="number" name="age" th:field="*{age}" class="form-control ageinput" id="age"/>
                     </div>
                 </div>
             </div>
@@ -47,14 +43,15 @@
         </div>
 
         <input type="text" th:field="*{city}" placeholder="City"/>
-
-        <select class="form-control">
-            <option>SC</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+        <div class="form-group">
+        <label for="state">State:</label>
+        <select name="state" th:field="*{state}" class="form-control" id="state" required="required">
+            <option value="SC">SC</option>
+            <option value="TX">TX</option>
+            <option value="NC">NC</option>
+            <option value="GA">GA</option>
         </select>
+        </div>
         <!--<input type="text" th:field="*{state}" placeholder="State"/>-->
 
         <input type="submit" value="Signup"/>

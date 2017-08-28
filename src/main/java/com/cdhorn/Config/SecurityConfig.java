@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                     .antMatchers("/").permitAll()
                     .antMatchers("/user/**").hasRole("USER")
-                    .antMatchers("/user/**").hasRole("ADMIN")
+//                    .antMatchers("/user/**").hasRole("ADMIN")
                     .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
-        return (request, response, authentication) -> response.sendRedirect("/");
+        return (request, response, authentication) -> response.sendRedirect("/user");
     }
 
     private AuthenticationFailureHandler loginFailureHandler() {
