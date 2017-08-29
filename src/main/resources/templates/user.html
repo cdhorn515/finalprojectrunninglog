@@ -4,39 +4,72 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
+<span th:include="includes :: css"></span>
 <body>
+<div th:include="navbar :: user-navbar"></div>
 <div class="container">
 
     <h1>user home page</h1>
 
+    <table class="table table-condensed">
+        <tr>
+            <th>Date</th>
+            <th>Distance</th>
+            <th>Time</th>
+            <th>Map</th>
+        </tr>
+        <tr th:each="run : ${userRuns}">
+            <td th:text="${run.date}"></td>
+            <td th:text="${run.distance}"></td>
+            <td th:text="${run.time}"></td>
+            <td>Map</td>
+            <td>
+                <form action="/user/deleteRun" method="post">
+                    <input type="hidden"
+                           th:name="${_csrf.parameterName}"
+                           th:value="${_csrf.token}"/>
+                    <input type="hidden" name="id" th:value="${run.id}"/>
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+            <td>
+                <form th:action="'/user/updateRun/' + ${run.id}" method="get">
+                    <input type="hidden"
+                           th:name="${_csrf.parameterName}"
+                           th:value="${_csrf.token}"/>
+                    <input type="hidden" name="id" th:value="${run.id}"/>
+                    <input type="submit" value="Update"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <!--<ul>-->
+        <!--<li th:each="run : ${userRuns}">-->
+            <!--<form action="/user/deleteRun" method="post">-->
+                <!--<span th:text="${run.date}"></span>-->
+                <!--:-->
+                <!--<span th:text="${run.distance}"></span>-->
+                <!--:-->
+                <!--<span th:text="${run.time}"></span>-->
 
 
-    <ul>
-        <li th:each="run : ${userRuns}">
-            <form action="/user/deleteRun" method="post">
-                <span th:text="${run.date}"></span>
-                :
-                <span th:text="${run.distance}"></span>
-                :
-                <span th:text="${run.time}"></span>
+                <!--<input type="hidden"-->
+                       <!--th:name="${_csrf.parameterName}"-->
+                       <!--th:value="${_csrf.token}"/>-->
+                <!--<input type="hidden" name="id" th:value="${run.id}"/>-->
+                <!--<input type="submit" value="Delete"/>-->
 
+            <!--</form>-->
 
-                <input type="hidden"
-                       th:name="${_csrf.parameterName}"
-                       th:value="${_csrf.token}"/>
-                <input type="hidden" name="id" th:value="${run.id}"/>
-                <input type="submit" value="Delete"/>
+    <!--<form th:action="'/user/updateRun/' + ${run.id}" method="get">-->
+    <!--<input type="hidden" name="id" th:value="${run.id}"/>-->
+    <!--<input type="submit" value="Update"/>-->
 
-            </form>
+    <!--</form>-->
 
-    <form th:action="'/user/updateRun/' + ${run.id}" method="get">
-    <input type="hidden" name="id" th:value="${run.id}"/>
-    <input type="submit" value="Update"/>
-
-    </form>
-
-        </li>
-    </ul>
+        <!--</li>-->
+    <!--</ul>-->
 
     <form th:action="@{/login}" method="post">
         <input type="hidden"
@@ -45,7 +78,8 @@
         <input type="submit" value="Logout"/>
     </form>
 
-
 </div>
+<span th:include="includes :: js"></span>
+
 </body>
 </html>

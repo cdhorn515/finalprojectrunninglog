@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <span th:include="includes :: css"></span>
+
 </head>
 <body>
+<div th:include="navbar :: user-navbar"></div>
 <div class="container">
     <h1>Edit run page</h1>
 
@@ -31,5 +34,8 @@
 
     <!--</form>-->
 </div>
+
+<span th:include="includes :: js"></span>
+
 </body>
 </html>
