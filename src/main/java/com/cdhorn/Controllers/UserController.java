@@ -3,17 +3,16 @@ package com.cdhorn.Controllers;
 import com.cdhorn.Interfaces.RunRepository;
 import com.cdhorn.Interfaces.UserRepository;
 import com.cdhorn.Models.Run;
+import com.cdhorn.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.cdhorn.Models.User;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.sql.Date;
-import java.sql.Time;
 
 
 @Controller
@@ -43,14 +42,21 @@ public class UserController {
     @RequestMapping(value = "/user/addRun", method = RequestMethod.POST)
     public String addRun(@RequestParam("date") Date date,
                          @RequestParam("distance") float distance,
-                         @RequestParam("time") Time time,
+                         @RequestParam("hour") int hour,
+                         @RequestParam("minute") int minute,
+                         @RequestParam("second") int second,
                          Principal principal) {
         String username = principal.getName();
         User user = userRepo.findByUsername(username);
         Run userRun = new Run();
         userRun.setDate(date);
         userRun.setDistance(distance);
-        userRun.setTime(time);
+        userRun.setHour(hour);
+        userRun.setMinute(minute);
+        userRun.setSecond(second);
+//        Time runTime = Time.valueOf(time);
+//        System.out.println(runTime);
+//        userRun.setTime(runTime);
         userRun.setUser(user);
         runRepo.save(userRun);
         return "addRun";
