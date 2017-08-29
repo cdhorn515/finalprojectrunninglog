@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @Controller
-public class Admin {
+public class AdminController {
 
     @Autowired
     private UserRepository userRepo;

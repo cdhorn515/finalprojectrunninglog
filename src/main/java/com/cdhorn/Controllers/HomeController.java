@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 @Controller
-public class Home {
+public class HomeController {
 
     @Autowired
     RunRepository runRepo;
