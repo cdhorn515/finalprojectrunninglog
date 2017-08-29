@@ -5,7 +5,7 @@
 
 	<groupId>com.cdhorn</groupId>
 	<artifactId>finalproject</artifactId>
-	<version>0.0.1-PREDEPLOY</version>
+	<version>1.0.0-RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>finalproject</name>
