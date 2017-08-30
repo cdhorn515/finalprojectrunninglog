@@ -39,6 +39,7 @@ public class LoginController {
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupForm(Model model) {
         model.addAttribute("user", new User());
+//        model.addAttribute("stateAbbrevs", StateAbbreviations.values());
         return "signup";
     }
 
