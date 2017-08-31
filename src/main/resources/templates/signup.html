@@ -19,7 +19,8 @@
                 <div class="form-group form-inline age">
                     <label for="age" class="col-sm-4 control-label agelabel">Age:</label>
                     <div class="form-inline">
-                        <input type="number" min="0" name="age" th:field="*{age}" class="form-control ageinput" id="age"/>
+                        <input type="number" min="0" name="age" th:field="*{age}" class="form-control ageinput"
+                               id="age"/>
                     </div>
                 </div>
             </div>
@@ -44,20 +45,15 @@
 
         <input type="text" th:field="*{city}" placeholder="City"/>
         <div class="form-group">
-        <label for="state">State:</label>
-        <select name="state" id="state" th:field="*{state}" class="form-control" required="required">
-            <option value="">Select state below</option>
-
-            <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>
-
-        </select>
+            <label for="state">State:</label>
+            <select name="state" id="state" th:field="*{state}" class="form-control" required="required">
+                <option value="">Select state below</option>
+                <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>
+            </select>
         </div>
-        <!--<input type="text" th:field="*{state}" placeholder="State"/>-->
-
         <input type="submit" value="Signup"/>
 
     </form>
-
 
 </div>
 <span th:include="includes :: js"></span>
