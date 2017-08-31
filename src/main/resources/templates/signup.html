@@ -45,10 +45,10 @@
         <input type="text" th:field="*{city}" placeholder="City"/>
         <div class="form-group">
         <label for="state">State:</label>
-        <select name="state" th:field="*{state}" class="form-control" id="state" required="required">
+        <select name="state" id="state" th:field="*{state}" class="form-control" required="required">
             <option value="">Select state below</option>
-            <option value="SC">SC</option>
-            <!--<option th:each="state : ${T(StateAbbreviations).values()}" th:value="${{state}}" th:text="${state}"></option>-->
+
+            <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>
 
         </select>
         </div>

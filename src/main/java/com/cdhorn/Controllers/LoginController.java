@@ -1,5 +1,6 @@
 package com.cdhorn.Controllers;
 
+import com.cdhorn.Enums.StateAbbreviations;
 import com.cdhorn.Interfaces.RoleRepository;
 import com.cdhorn.Interfaces.UserRepository;
 import com.cdhorn.Models.Role;
@@ -38,27 +39,28 @@ public class LoginController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupForm(Model model) {
+        StateAbbreviations[] states = StateAbbreviations.values();
         model.addAttribute("user", new User());
-//        model.addAttribute("stateAbbrevs", StateAbbreviations.values());
+        model.addAttribute("states", states);
         return "signup";
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupForm(@RequestParam("username") String username,
-                         @RequestParam("password") String password,
-                         @RequestParam("age") int age,
-                         @RequestParam("gender") char gender,
-                         @RequestParam("city") String city,
-                         @RequestParam("state") String state
-                         ) {
+                             @RequestParam("password") String password,
+                             @RequestParam("age") int age,
+                             @RequestParam("gender") char gender,
+                             @RequestParam("city") String city,
+                             @RequestParam("state") String state) {
         //create new instance of user model
         User user = new User();
         //set username on user instance
         user.setUsername(username);
         user.setGender(gender);
-        user.setState(state);
         user.setAge(age);
         user.setCity(city);
+        StateAbbreviations selectedState = StateAbbreviations.valueOf(state);
+        user.setState(selectedState);
         //bcrypt encode pw
         String encryptedPassword = bCryptPasswordEncoder.encode(password);
         //set encrypted pw on user instance

@@ -1,5 +1,6 @@
 package com.cdhorn.Models;
 
+import com.cdhorn.Enums.StateAbbreviations;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +23,8 @@ public class User implements UserDetails{
     private int age;
     private char gender;
     private String city;
-    private String state;
+    @Enumerated(EnumType.STRING)
+    private StateAbbreviations state;
     private boolean active;
 
     @OneToOne
@@ -96,13 +98,20 @@ public class User implements UserDetails{
         this.city = city;
     }
 
-    public String getState() {
+    public StateAbbreviations getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(StateAbbreviations state) {
         this.state = state;
     }
+    //    public String getState() {
+//        return state;
+//    }
+//
+//    public void setState(String state) {
+//        this.state = state;
+//    }
 
     public boolean isActive() {
         return active;
