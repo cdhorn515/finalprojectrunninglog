@@ -13,6 +13,7 @@ public class Map {
     private String startPosition;
     private String endPosition;
 
+    //These should go in separate classes
     private String staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap?zoom=10&amp;size=300x300";
     private String startMarkerOrigin; //use latitude from directions response
     private String finishMarkerDestination; //use longitude from directions response
@@ -30,7 +31,10 @@ public class Map {
     private String directionsApiKey = "&key=";
     private String mode = "&mode=walking";
 
-    private String geoCodingUrl = "";
+    private String geoCodingUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+    private String geoCodeStartAddress;
+    private String geoCodeDestinationAddress;
+    private String geoCodingKey = "&key=";
 
     @OneToOne
     @JoinColumn(name = "user_id")
