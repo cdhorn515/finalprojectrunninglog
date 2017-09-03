@@ -23,17 +23,19 @@ public class MapController {
     public String testMap(Model model) throws IOException {
 
         ApiKey apiKey = new ApiKey();
-        apiKey.directionsApiKey();
-        apiKey.geoCodeApiKey();
-        apiKey.staticMapKey();
+        System.out.println(apiKey.getDIRECTIONS_API());
+        apiKey.getDIRECTIONS_API();
+        apiKey.getGEOCODING_API();
+        apiKey.getSTATIC_MAP_API();
+
+
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("https://maps.googleapis.com/maps/api/directions/json?origin=furman+university+greenville+SC&destination=swamp+rabbit+grocery+greenville+sc&key=DIRECTIONS_KEY&mode=walking");
-
+        HttpGet request = new HttpGet("https://maps.googleapis.com/maps/api/directions/json?origin=furman+university+greenville+SC&destination=swamp+rabbit+grocery+greenville+sc&key=" + apiKey.getDIRECTIONS_API() + "&mode=walking");
         HttpResponse response = client.execute(request);
         System.out.println(response);
         BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
-//        String line = rd.readLine();
+
         String mapLine = rd.readLine();
         String line = "";
         while (mapLine != null) {
