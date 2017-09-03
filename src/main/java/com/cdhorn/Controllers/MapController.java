@@ -2,6 +2,7 @@ package com.cdhorn.Controllers;
 
 
 import com.cdhorn.GoogleMaps.ApiDirections;
+import com.cdhorn.GoogleMaps.ApiKey;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -18,11 +19,13 @@ import java.io.InputStreamReader;
 @Controller
 public class MapController {
 
-
-        @RequestMapping("/map")
+    @RequestMapping("/map")
     public String testMap(Model model) throws IOException {
 
-
+        ApiKey apiKey = new ApiKey();
+        apiKey.directionsApiKey();
+        apiKey.geoCodeApiKey();
+        apiKey.staticMapKey();
 
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet("https://maps.googleapis.com/maps/api/directions/json?origin=furman+university+greenville+SC&destination=swamp+rabbit+grocery+greenville+sc&key=DIRECTIONS_KEY&mode=walking");
