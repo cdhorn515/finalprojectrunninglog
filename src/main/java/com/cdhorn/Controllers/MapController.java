@@ -18,8 +18,11 @@ import java.io.InputStreamReader;
 @Controller
 public class MapController {
 
+
         @RequestMapping("/map")
     public String testMap(Model model) throws IOException {
+
+
 
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet("https://maps.googleapis.com/maps/api/directions/json?origin=furman+university+greenville+SC&destination=swamp+rabbit+grocery+greenville+sc&key=DIRECTIONS_KEY&mode=walking");
@@ -38,8 +41,10 @@ public class MapController {
         ObjectMapper mapper = new ObjectMapper();
         ApiDirections apiDirections = mapper.readValue(line, ApiDirections.class);
         System.out.println(apiDirections);
-
-
+//        String replacePipe = apiUrl.replace("|", "%7C");
+//            System.out.println(replacePipe);
+//        String mapUrl = replacePipe.replace("//", "/");
+//        model.addAttribute("mapUrl", mapUrl);
         return "map";
 
     }
