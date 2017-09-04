@@ -1,7 +1,6 @@
 package com.cdhorn.Controllers;
 
-
-import com.cdhorn.GoogleMaps.ApiDirections;
+import com.cdhorn.GoogleMaps.ApiDirectionsFeed;
 import com.cdhorn.GoogleMaps.ApiKey;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
@@ -24,16 +23,18 @@ public class MapController {
 
         ApiKey apiKey = new ApiKey();
         System.out.println(apiKey.getDIRECTIONS_API());
-        apiKey.getDIRECTIONS_API();
-        apiKey.getGEOCODING_API();
-        apiKey.getSTATIC_MAP_API();
+        System.out.println(apiKey.getGEOCODING_API());
+        System.out.println(apiKey.getSTATIC_MAP_API());
 
 
 
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet("https://maps.googleapis.com/maps/api/directions/json?origin=furman+university+greenville+SC&destination=swamp+rabbit+grocery+greenville+sc&key=" + apiKey.getDIRECTIONS_API() + "&mode=walking");
         HttpResponse response = client.execute(request);
+
+
         System.out.println(response);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
 
         String mapLine = rd.readLine();
@@ -44,8 +45,45 @@ public class MapController {
         }
         System.out.println(line);
         ObjectMapper mapper = new ObjectMapper();
-        ApiDirections apiDirections = mapper.readValue(line, ApiDirections.class);
-        System.out.println(apiDirections);
+        ApiDirectionsFeed feed = mapper.readValue(line, ApiDirectionsFeed.class);
+        System.out.println("----------------------------------------------------");
+        System.out.println(feed);
+        
+        System.out.println("HIHIHIHIHIHIHIHIHIHIHIHIHIHHIHIHIHIHIHIHIHIHIHIHIHIHIHIHI");
+        System.out.println((feed.getRoutes().get(0).getOverviewPolylineObject().getPolyline()).toString());
+//        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//        for (Routes routes : feed.getRoutes()) {
+//            System.out.println(routes.getOverviewPolylineObject().getPolyline());
+//        }
+
+//        String routes = feed.getOverviewPolylineObject().toString();
+//        System.out.println(routes);
+
+        //below throws error
+//        Routes routes1 = mapper.readValue(routes, Routes.class);
+//        String polyline = routes1.getOverviewPolylineObject().toString();
+//        System.out.println("----------------------------------------------------");
+//        System.out.println(polyline);
+
+        //below throws java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to com.cdhorn.GoogleMaps.Routes
+//        for (Routes routes : feed.getOverviewPolylineObject()) {
+//            System.out.println(routes.getOverviewPolylineObject().getPolyline());
+//        }
+////        System.out.println(feed);
+//
+//        OverviewPolylineObject overviewPolylineObject = new OverviewPolylineObject();
+//        System.out.println(overviewPolylineObject.getPolyline());
+//
+//        System.out.println(feed.getRoutes());
+//
+//        for (Routes routes : feed.getRoutes()) {
+//            System.out.println(feed.getRoutes());
+//        }
+//            System.out.println("POLYLINE BELOW------------------------------");
+//            System.out.println(routes.getOverviewPolylineObject().getPolyline());
+//        }
+
+
 //        String replacePipe = apiUrl.replace("|", "%7C");
 //            System.out.println(replacePipe);
 //        String mapUrl = replacePipe.replace("//", "/");
@@ -55,11 +93,6 @@ public class MapController {
     }
 
 }
-
-
-
-
-
     /*
         ObjectMapper mapper = new ObjectMapper();
         StarWars starWars = mapper.readValue(line, StarWars.class);
