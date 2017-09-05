@@ -7,12 +7,6 @@ import java.util.List;
 
 public class ApiDirectionsFeed extends GenericJson{
 
-//    @Key("routes")
-//    private LinkedHashMap<OverviewPolylineObject, String> overviewPolylineObject;
-//
-//    public LinkedHashMap<OverviewPolylineObject, String> getOverviewPolylineObject() {
-//        return overviewPolylineObject;
-//    }
 
     @Key("routes")
     private List<Routes> routes;
@@ -21,9 +15,11 @@ public class ApiDirectionsFeed extends GenericJson{
         return routes;
     }
 
-    //    private List<ApiDirections> directions;
+    //    @Key("routes")
+//    private LinkedHashMap<OverviewPolylineObject, String> overviewPolylineObject;
 //
-//    public List<ApiDirections> getDirections() {
-//        return directions;
+//    public LinkedHashMap<OverviewPolylineObject, String> getOverviewPolylineObject() {
+//        return overviewPolylineObject;
 //    }
+
 }
