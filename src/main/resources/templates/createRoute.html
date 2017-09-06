@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <span th:include="includes :: css"></span>
+</head>
+<body>
+<div th:include="navbar :: visitor-navbar"></div>
+<div class="container">
+    <h1>create route page</h1>
+
+    <form action="/finishRoute" method="post">
+
+        <input type="submit" value="End of route"/>
+    </form>
+
+    <form action="/createRoute" method="post">
+        <h3>Add a leg to your route?</h3>
+        <label for="address"></label>
+        <input type="text" name="address" id="address"/>
+        <input type="hidden" name="city" id="city" value="Greenville"/>
+        <input type="hidden" name="state" th="state" value="SC"/>
+        <input type="submit" value="Add leg"/>
+    </form>
+
+
+
+
+</div>
+
+</body>
+</html>

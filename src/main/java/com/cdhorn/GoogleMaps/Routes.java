@@ -1,27 +1,20 @@
 package com.cdhorn.GoogleMaps;
 
-import com.google.api.client.json.GenericJson;
-import com.google.api.client.util.Key;
+public class Routes {
 
-import java.util.LinkedHashMap;
-import java.util.List;
+//    @Key("overview_polyline")
+//    private LinkedHashMap<Long, OverviewPolylineObject> overviewPolylineObject;
 
+//    @Key("legs")
+//    private List<Legs> legs;
 
-public class Routes extends GenericJson {
+//    public LinkedHashMap<Long, OverviewPolylineObject> getOverviewPolylineObject() {
+//        return overviewPolylineObject;
+//    }
 
-    @Key("overview_polyline")
-    private LinkedHashMap<Long, OverviewPolylineObject> overviewPolylineObject;
-
-    @Key("legs")
-    private List<Legs> legs;
-
-    public LinkedHashMap<Long, OverviewPolylineObject> getOverviewPolylineObject() {
-        return overviewPolylineObject;
-    }
-
-    public List<Legs> getLegs() {
-        return legs;
-    }
+//    public List<Legs> getLegs() {
+//        return legs;
+//    }
 
 
 }

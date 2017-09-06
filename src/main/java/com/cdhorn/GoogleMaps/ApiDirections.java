@@ -2,8 +2,6 @@ package com.cdhorn.GoogleMaps;
 
 public class ApiDirections{
 
-
-
     private String start_address;
 
     private double latitude;
@@ -21,5 +19,47 @@ public class ApiDirections{
     private String directionsApiKey = "&key=";
     private String mode = "&mode=walking";
 
+    public String getStart_address() {
+        return start_address;
+    }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getEnd_address() {
+        return end_address;
+    }
+
+    public String getDirectionsMapUrl() {
+        return directionsMapUrl;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getWaypoints() {
+        return waypoints;
+    }
+
+    public String getWaypointsInfo() {
+        return waypointsInfo;
+    }
+
+    public String getDirectionsApiKey() {
+        return directionsApiKey;
+    }
+
+    public String getMode() {
+        return mode;
+    }
 }

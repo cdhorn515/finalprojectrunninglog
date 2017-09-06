@@ -1,25 +1,13 @@
 package com.cdhorn.GoogleMaps;
 
-import com.google.api.client.json.GenericJson;
-import com.google.api.client.util.Key;
-
-import java.util.List;
-
-public class ApiDirectionsFeed extends GenericJson{
+public class ApiDirectionsFeed {
 
 
-    @Key("routes")
-    private List<Routes> routes;
-
-    public List<Routes> getRoutes() {
-        return routes;
-    }
-
-    //    @Key("routes")
-//    private LinkedHashMap<OverviewPolylineObject, String> overviewPolylineObject;
+//    @Key("routes")
+//    private List<Routes> routes;
 //
-//    public LinkedHashMap<OverviewPolylineObject, String> getOverviewPolylineObject() {
-//        return overviewPolylineObject;
+//    public List<Routes> getRoutes() {
+//        return routes;
 //    }
 
 }
