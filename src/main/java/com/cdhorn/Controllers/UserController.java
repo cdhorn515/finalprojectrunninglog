@@ -47,7 +47,7 @@ public class UserController {
                          @RequestParam("hour") String hour,
                          @RequestParam("minute") String minute,
                          @RequestParam("second") String second,
-                         Principal principal) {
+                         Principal principal, Model model) {
         String username = principal.getName();
         User user = userRepo.findByUsername(username);
         Run userRun = new Run();
@@ -61,19 +61,15 @@ public class UserController {
             second = "00";
         }
         String time = hour + ":" + minute + ":" + second;
-        System.out.println("/////////////////////////");
-        System.out.println(time);
         userRun.setDate(date);
         userRun.setDistance(distance);
-//        userRun.setHour(hour);
-//        userRun.setMinute(minute);
-//        userRun.setSecond(second);
         Time runTime = Time.valueOf(time);
-        System.out.println(runTime);
         userRun.setTime(runTime);
         userRun.setUser(user);
         runRepo.save(userRun);
-        return "routeStart";
+        long runId = userRun.getId();
+        model.addAttribute("runId", runId);
+        return "redirect:/map/"+ runId + "/routeStart";
     }
 
     @RequestMapping(value = "/user/updateRun/{id}", method = RequestMethod.GET)
@@ -95,7 +91,6 @@ public class UserController {
         userRun.setDistance(distance);
         Date runDate = Date.valueOf(date);
         Time runTime = Time.valueOf(time);
-//        System.out.println(runTime);
         userRun.setDate(runDate);
         userRun.setTime(runTime);
         runRepo.save(userRun);

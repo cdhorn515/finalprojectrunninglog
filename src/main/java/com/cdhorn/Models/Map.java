@@ -11,9 +11,13 @@ public class Map {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "ispublic")
     private boolean isPublic = false;
+    @Column(name = "startposition")
     private String startPosition;
+    @Column(name = "endposition")
     private String endPosition;
+    private String legs;
     private String url;
     @Column(name="route_name")
     private String routeName;
@@ -22,7 +26,7 @@ public class Map {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "run", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "map", cascade = CascadeType.ALL)
     private List<Run> runs;
 
     public long getId() {
@@ -55,6 +59,14 @@ public class Map {
 
     public void setEndPosition(String endPosition) {
         this.endPosition = endPosition;
+    }
+
+    public String getLegs() {
+        return legs;
+    }
+
+    public void setLegs(String legs) {
+        this.legs = legs;
     }
 
     public String getUrl() {

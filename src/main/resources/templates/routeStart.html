@@ -10,21 +10,15 @@
 <div class="container">
     <h1>create route page</h1>
 
-
-    <form action="/map/routeStart" method="post">
+    <form th:action="'/map/' + ${runId} + '/routeStart/'" method="post">
         <h3>Enter your route starting point:</h3>
         <label for="address"></label>
         <input type="text" name="address" id="address"/>
         <input type="hidden" name="city" id="city" value="Greenville"/>
-        <input type="hidden" name="state" th="state" value="SC"/>
+        <input type="hidden" name="state" id="state" value="SC"/>
+        <!--<input type="hidden" th:value="${runId}"/>-->
         <input type="submit" value="Add leg"/>
     </form>
-
-
-    <!--<form action="/finishRoute" method="post">-->
-
-        <!--<input type="submit" value="End of route"/>-->
-    <!--</form>-->
 
 
 </div>
