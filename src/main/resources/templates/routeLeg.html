@@ -11,13 +11,18 @@
 
     <h1>Add additional route legs:</h1>
 
-    <form th:action="'/map/' + ${runId} + '/routeLeg" method="post">
-        <label for="address"></label>
-        <input type="text" name="address" id="address"/>
+    <form th:action="'/map/' + ${runId} + '/routeLeg/' + ${mapId}" method="post">
+        <input type="hidden"
+               th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}"/>
+        <label for="leg"></label>
+        <input type="text" name="leg" id="leg"/>
+        <input type="hidden" th:value="${mapId}"/>
+        <input type="hidden" th:value="${runId}"/>
         <input type="submit" value="Add leg"/>
     </form>
 
-<h3>Route finished</h3>
+<h3>Route finished?</h3>
     <form action="/routeEnd" method="post">
 
     <input type="submit" value="End of route"/>

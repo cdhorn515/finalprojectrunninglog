@@ -27,16 +27,9 @@ public class MapController {
     MapRepository mapRepo;
 
     @RequestMapping("/map/{runId}/routeStart")
-    public String createRoute(Model model) throws IOException {
-        ApiKey apiKey = new ApiKey();
-        GeocodingInterface geocodingInterface = Feign.builder()
-                .decoder(new GsonDecoder())
-                .target(GeocodingInterface.class, "https://maps.googleapis.com");
-        GeocodingResponse response = geocodingInterface.geocodingResponse("starbucks+east+north+street+greenville+sc",
-                apiKey.getGEOCODING_API());
-        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLat());
-        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLng());
-//        System.out.println(response.results.get(0).geometry.location.lng);
+    public String createRoute(Model model,
+                              @PathVariable("runId") String runId) {
+        model.addAttribute("runId", runId);
         return "routeStart";
     }
 
@@ -57,21 +50,58 @@ public class MapController {
         Map newMap = new Map();
         newMap.setStartPosition(startPosition);
         mapRepo.save(newMap);
+        long mapId = newMap.getId();
         System.out.println(response.getResults().get(0).getGeometry().getLocation().getLat());
         System.out.println(response.getResults().get(0).getGeometry().getLocation().getLng());
-
+        model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
-        return "redirect:/map/"+runId+"/routeLeg";
+        return "redirect:/map/{runId}/routeLeg/" + mapId;
     }
 
-    @RequestMapping("/map/{runId}/routeLeg")
+    @RequestMapping("/map/{runId}/routeLeg/{mapId}")
     public String addRouteLeg(@PathVariable("runId") String runId,
-                              @RequestParam("leg") String leg) {
-
+                              @PathVariable("mapId") String mapId,
+                              Model model) {
+        model.addAttribute("mapId", mapId);
+        model.addAttribute("runId", runId);
         return "routeLeg";
     }
 
-    @RequestMapping("/map/{runId}/routeEnd")
+    @RequestMapping(value = "/map/{runId}/routeLeg/{mapId}", method = RequestMethod.POST)
+    public String addRouteLeg(@PathVariable("runId") String runId,
+                              @RequestParam("leg") String leg,
+                              @PathVariable("mapId") String mapId,
+                              Model model) {
+
+        String addressNoSpaces = leg.replace(" ", "+");
+        ApiKey apiKey = new ApiKey();
+        GeocodingInterface geocodingInterface = Feign.builder()
+                .decoder(new GsonDecoder())
+                .target(GeocodingInterface.class, "https://maps.googleapis.com");
+        GeocodingResponse response = geocodingInterface.geocodingResponse(addressNoSpaces + "+greenville+sc",
+                apiKey.getGEOCODING_API());
+        double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
+        double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
+        String legs = lat + "," + lng;
+        long intMapId = Integer.valueOf(mapId);
+        Map updateMap = mapRepo.findOne(intMapId);
+        String currentLegs = updateMap.getLegs();
+        if (currentLegs == null) {
+            updateMap.setLegs(legs);
+        } else {
+            String updatedLegsString = currentLegs + "+" + legs;
+            updateMap.setLegs(updatedLegsString);
+        }
+
+        mapRepo.save(updateMap);
+        model.addAttribute("mapId", mapId);
+        model.addAttribute("runId", runId);
+        return "redirect:/map/{runId}/routeLeg/" + intMapId;
+
+    }
+
+
+    @RequestMapping("/map/{runId}/routeEnd/{mapId}")
     public String testMap(Model model) throws IOException {
 
         ApiKey apiKey = new ApiKey();
