@@ -11,6 +11,8 @@
     <h1>Signup page</h1>
 
     <form th:action="@{/signup}" th:object="${user}" method="post">
+        <input type="text" th:field="*{first}" placeholder="First Name"/>
+        <input type="text" th:field="*{last}" placeholder="Last Name"/>
         <input type="text" th:field="*{username}" placeholder="Username"/>
         <input type="password" th:field="*{password}" placeholder="Password"/>
 

@@ -22,7 +22,7 @@
         <tr th:each="run : ${userRuns}">
             <td th:text="${run.date}"></td>
             <td th:text="${run.distance}"></td>
-            <td th:text="${run.time}"></td>
+            <td th:text="${run.hour}"  th:text="${run.minute}"  th:text="${run.second}"></td>
             <td>Map</td>
             <td>
                 <form action="/user/deleteRun" method="post">

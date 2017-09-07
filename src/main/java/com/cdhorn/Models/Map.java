@@ -12,6 +12,9 @@ public class Map {
     private boolean isPublic = false;
     private String startPosition;
     private String endPosition;
+    private String url;
+    @Column(name="route_name")
+    private String routeName;
 
 //    private ApiStaticMap staticMap; //this should be a one to one?
 
@@ -53,6 +56,22 @@ public class Map {
 
     public void setEndPosition(String endPosition) {
         this.endPosition = endPosition;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getRouteName() {
+        return routeName;
+    }
+
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
     }
 
     public User getUser() {

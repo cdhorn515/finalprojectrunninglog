@@ -19,6 +19,8 @@ public class User implements UserDetails{
     private long id;
 
     private String username;
+    private String first;
+    private String last;
     private String password;
     private int age;
     private char gender;
@@ -44,6 +46,22 @@ public class User implements UserDetails{
 
     public String getUsername() {
         return username;
+    }
+
+    public String getFirst() {
+        return first;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
+
+    public String getLast() {
+        return last;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
     }
 
     public void setUsername(String username) {

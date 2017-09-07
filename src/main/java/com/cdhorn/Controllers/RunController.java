@@ -1,7 +1,7 @@
 package com.cdhorn.Controllers;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
-@RestController
+@Controller
 public class RunController {
 }

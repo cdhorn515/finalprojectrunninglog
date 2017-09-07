@@ -4,6 +4,7 @@ import com.cdhorn.GoogleMaps.ApiKey;
 import com.cdhorn.GoogleMaps.ApiStaticMap;
 import com.cdhorn.Interfaces.DirectionsInterface;
 import com.cdhorn.Interfaces.GeocodingInterface;
+
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import org.springframework.stereotype.Controller;
@@ -21,21 +22,21 @@ public class MapController {
     public String createRoute(Model model) throws IOException {
 
         ApiKey apiKey = new ApiKey();
-        GeocodingInterface gmaps = Feign.builder()
+        GeocodingInterface geocodingInterface = Feign.builder()
                 .decoder(new GsonDecoder())
                 .target(GeocodingInterface.class, "https://maps.googleapis.com");
-        GeocodingResponse response = gmaps.geocodingResponse("starbucks+east+north+street+greenville+sc",
+        GeocodingResponse response = geocodingInterface.geocodingResponse("starbucks+east+north+street+greenville+sc",
                 apiKey.getGEOCODING_API());
         System.out.println(response.results.get(0).geometry.location.lat);
         System.out.println(response.results.get(0).geometry.location.lng);
 
-        return "createRoute";
+        return "routeStart";
     }
 
     @RequestMapping(value = "/routeStart", method = RequestMethod.POST)
     public String createRoute(@RequestParam("address") String address) {
 
-        return "addLeg";
+        return "routeLeg";
     }
 
     @RequestMapping("/map")

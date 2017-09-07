@@ -62,7 +62,7 @@ public class UserController {
         userRun.setTime(runTime);
         userRun.setUser(user);
         runRepo.save(userRun);
-        return "addRun";
+        return "routeStart";
     }
 
     @RequestMapping(value = "/user/updateRun/{id}", method = RequestMethod.GET)

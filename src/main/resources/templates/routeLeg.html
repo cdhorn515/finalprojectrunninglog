@@ -8,26 +8,25 @@
 <body>
 <div th:include="navbar :: visitor-navbar"></div>
 <div class="container">
-    <h1>create route page</h1>
 
-    <form action="/finishRoute" method="post">
+    <h1>Add additional route legs:</h1>
 
-        <input type="submit" value="End of route"/>
-    </form>
-
-    <form action="/createRoute" method="post">
-        <h3>Add a leg to your route?</h3>
+    <form action="/routeLeg" method="post">
+        <h3>Enter your route starting point:</h3>
         <label for="address"></label>
         <input type="text" name="address" id="address"/>
         <input type="hidden" name="city" id="city" value="Greenville"/>
         <input type="hidden" name="state" th="state" value="SC"/>
+        <h3>Add another leg:</h3>
         <input type="submit" value="Add leg"/>
     </form>
 
+<h3>Route finished</h3>
+    <form action="/routeEnd" method="post">
 
-
+    <input type="submit" value="End of route"/>
+    </form>
 
 </div>
-
 </body>
 </html>
