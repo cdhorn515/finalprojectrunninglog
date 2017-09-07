@@ -1,8 +1,9 @@
 package com.cdhorn.Controllers;
 
-import com.cdhorn.GoogleMaps.ApiGeocoding;
 import com.cdhorn.GoogleMaps.ApiKey;
-import com.cdhorn.Interfaces.GoogleMapsInterface;
+import com.cdhorn.GoogleMaps.ApiStaticMap;
+import com.cdhorn.Interfaces.DirectionsInterface;
+import com.cdhorn.Interfaces.GeocodingInterface;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import org.springframework.stereotype.Controller;
@@ -20,36 +21,13 @@ public class MapController {
     public String createRoute(Model model) throws IOException {
 
         ApiKey apiKey = new ApiKey();
-        ApiGeocoding apiGeocoding = new ApiGeocoding();
-        GoogleMapsInterface gmaps = Feign.builder()
+        GeocodingInterface gmaps = Feign.builder()
                 .decoder(new GsonDecoder())
-                .target(GoogleMapsInterface.class, "https://maps.googleapis.com");
+                .target(GeocodingInterface.class, "https://maps.googleapis.com");
         GeocodingResponse response = gmaps.geocodingResponse("starbucks+east+north+street+greenville+sc",
-                "AIzaSyBhMVxBkMr2Q4Gl7EVvtcdrNu7WpS2srkw");
+                apiKey.getGEOCODING_API());
         System.out.println(response.results.get(0).geometry.location.lat);
-
-
-//        HttpClient client = new DefaultHttpClient();
-//        HttpGet geocodeRequest = new HttpGet("https://maps.googleapis.com/maps/api/geocode/json?address=starbucks+east+north+street+greenville+sc&key=" + apiKey.getGEOCODING_API());
-//        HttpResponse geocodeResponse = client.execute(geocodeRequest);
-//        System.out.println(geocodeResponse);
-//        BufferedReader rd = new BufferedReader(new InputStreamReader(geocodeResponse.getEntity().getContent()));
-//        String geoCodeLine = rd.readLine();
-//        String line = "";
-//        while (geoCodeLine != null) {
-//            line += geoCodeLine;
-//            geoCodeLine = rd.readLine();
-//        }
-//        ObjectMapper mapper = new ObjectMapper();
-//        ApiGeocodingFeed geocodingFeed = mapper.readValue(line, ApiGeocodingFeed.class);
-//        ApiGeocodingGeometryObject geometryObject = mapper.convertValue(geocodingFeed.getResult().get(0), new TypeReference<ApiGeocodingGeometryObject>() {});
-//        LinkedHashMap geocodingLocationObject = geometryObject.getApiGeocodingLocationObject();
-//
-//        ApiGeocodingLocationObject locationObject = mapper.convertValue(geometryObject.getApiGeocodingLocationObject(), new TypeReference<ApiGeocodingLocationObject>() {});
-//
-//        System.out.println(geocodingLocationObject);
-//        System.out.println(geocodingFeed.getResult().get(0).getApiGeocodingGeometryObject());
-//        System.out.println(line);
+        System.out.println(response.results.get(0).geometry.location.lng);
 
         return "createRoute";
     }
@@ -64,46 +42,28 @@ public class MapController {
     public String testMap(Model model) throws IOException {
 
         ApiKey apiKey = new ApiKey();
-//        HttpClient client = new DefaultHttpClient();
-//        HttpGet request = new HttpGet("https://maps.googleapis.com/maps/api/directions/json?origin=furman+university+greenville+SC&destination=swamp+rabbit+grocery+greenville+sc&key=" + apiKey.getDIRECTIONS_API() + "&mode=walking");
-//        HttpResponse response = client.execute(request);
+        DirectionsInterface directionsInterface = Feign.builder()
+                .decoder(new GsonDecoder())
+                .target(DirectionsInterface.class, "https://maps.googleapis.com");
+        DirectionResponse response = directionsInterface.directionResponse("34.9195746,-82.4217151", "34.8701836,-82.44755599999999", apiKey.getDIRECTIONS_API());
+        String polyline = response.routes.get(0).overview_polyline.points;
+        System.out.println(polyline);
+        System.out.println("");
+        String reformattedPolyline = polyline.replace("|", "%7C");
+        System.out.println(reformattedPolyline);
+        System.out.println("");
+
+        ApiStaticMap apiStaticMap = new ApiStaticMap();
+        String url = apiStaticMap.getStaticMapUrl();
+        String startMarker = apiStaticMap.getStartMarkerParameters();
+        String finishMarker = apiStaticMap.getFinishMarkerParameters();
+        String pathParams = apiStaticMap.getPathParameters();
+        String staticMapApiKeyParams = apiStaticMap.getStaticMapApiKey();
+
+        url += startMarker + "34.9195746,-82.4217151" + finishMarker + "34.8701836,-82.4217151" + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + reformattedPolyline;
 //
-//        System.out.println(response);
-//        System.out.println("");
-//        BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
-//
-//        String mapLine = rd.readLine();
-//        String line = "";
-//        while (mapLine != null) {
-//            line += mapLine;
-//            mapLine = rd.readLine();
-//        }
-//        System.out.println(line);
-//        ObjectMapper mapper = new ObjectMapper();
-//        ApiDirectionsFeed feed = mapper.readValue(line, ApiDirectionsFeed.class);
-//        System.out.println("");
-//        List<Routes> x = feed.getRoutes();
-//        Routes myRoute = mapper.convertValue(feed.getRoutes().get(0), new TypeReference<Routes>() {});
-//        LinkedHashMap polylineObject = myRoute.getOverviewPolylineObject();
-//        Object myPoints = polylineObject.get("points");
-//        System.out.println(myPoints);
-//        String polylineString = myPoints.toString();
-//
-//        String polylineStringReformatted = polylineString.replace("|", "%7C");
-//        System.out.println(polylineStringReformatted);
-//
-//
-//        //concat url string
-//        ApiStaticMap apiStaticMap = new ApiStaticMap();
-//        String url = apiStaticMap.getStaticMapUrl();
-//        String startMarker = apiStaticMap.getStartMarkerParameters();
-//        String finishMarker = apiStaticMap.getFinishMarkerParameters();
-//        String pathParams = apiStaticMap.getPathParameters();
-//        String staticMapApiKeyParams = apiStaticMap.getStaticMapApiKey();
-//         url += startMarker + "34.9195746,-82.4217151" + finishMarker + "34.8701836,-82.4217151" + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + polylineStringReformatted;
-//
-//        System.out.println(url);
-//        model.addAttribute("url", url);
+        System.out.println(url);
+        model.addAttribute("url", url);
         return "map";
 
     }
