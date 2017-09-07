@@ -1,6 +1,6 @@
 package com.cdhorn.Interfaces;
 
-import com.cdhorn.Controllers.DirectionResponse;
+import com.cdhorn.Classes.DirectionResponse;
 import feign.Param;
 import feign.RequestLine;
 

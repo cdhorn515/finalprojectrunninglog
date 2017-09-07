@@ -1,10 +1,11 @@
 package com.cdhorn.Controllers;
 
+import com.cdhorn.Classes.DirectionResponse;
+import com.cdhorn.Classes.GeocodingResponse;
 import com.cdhorn.GoogleMaps.ApiKey;
 import com.cdhorn.GoogleMaps.ApiStaticMap;
 import com.cdhorn.Interfaces.DirectionsInterface;
 import com.cdhorn.Interfaces.GeocodingInterface;
-
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import org.springframework.stereotype.Controller;
@@ -20,15 +21,16 @@ public class MapController {
 
     @RequestMapping("/routeStart")
     public String createRoute(Model model) throws IOException {
-
         ApiKey apiKey = new ApiKey();
         GeocodingInterface geocodingInterface = Feign.builder()
                 .decoder(new GsonDecoder())
                 .target(GeocodingInterface.class, "https://maps.googleapis.com");
         GeocodingResponse response = geocodingInterface.geocodingResponse("starbucks+east+north+street+greenville+sc",
                 apiKey.getGEOCODING_API());
-        System.out.println(response.results.get(0).geometry.location.lat);
-        System.out.println(response.results.get(0).geometry.location.lng);
+        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLat());
+        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLng());
+
+//        System.out.println(response.results.get(0).geometry.location.lng);
 
         return "routeStart";
     }
@@ -47,7 +49,7 @@ public class MapController {
                 .decoder(new GsonDecoder())
                 .target(DirectionsInterface.class, "https://maps.googleapis.com");
         DirectionResponse response = directionsInterface.directionResponse("34.9195746,-82.4217151", "34.8701836,-82.44755599999999", apiKey.getDIRECTIONS_API());
-        String polyline = response.routes.get(0).overview_polyline.points;
+        String polyline = response.getRoutes().get(0).getOverview_polyline().getPoints();
         System.out.println(polyline);
         System.out.println("");
         String reformattedPolyline = polyline.replace("|", "%7C");

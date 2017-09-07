@@ -1,7 +1,7 @@
 package com.cdhorn.Interfaces;
 
 
-import com.cdhorn.Controllers.GeocodingResponse;
+import com.cdhorn.Classes.GeocodingResponse;
 import feign.Param;
 import feign.RequestLine;
 
