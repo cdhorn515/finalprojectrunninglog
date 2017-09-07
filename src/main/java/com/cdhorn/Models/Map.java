@@ -1,8 +1,10 @@
 package com.cdhorn.Models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name ="map_route")
 public class Map {
 
     @Id
@@ -16,15 +18,12 @@ public class Map {
     @Column(name="route_name")
     private String routeName;
 
-//    private ApiStaticMap staticMap; //this should be a one to one?
-
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "run_id")
-    private Run run;
+    @OneToMany(mappedBy = "run", cascade = CascadeType.ALL)
+    private List<Run> runs;
 
     public long getId() {
         return id;
@@ -82,11 +81,11 @@ public class Map {
         this.user = user;
     }
 
-    public Run getRun() {
-        return run;
+    public List<Run> getRuns() {
+        return runs;
     }
 
-    public void setRun(Run run) {
-        this.run = run;
+    public void setRuns(List<Run> runs) {
+        this.runs = runs;
     }
 }

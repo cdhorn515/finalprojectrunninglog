@@ -19,7 +19,7 @@ import java.io.IOException;
 @Controller
 public class MapController {
 
-    @RequestMapping("/routeStart")
+    @RequestMapping("/map/routeStart")
     public String createRoute(Model model) throws IOException {
         ApiKey apiKey = new ApiKey();
         GeocodingInterface geocodingInterface = Feign.builder()
@@ -29,19 +29,23 @@ public class MapController {
                 apiKey.getGEOCODING_API());
         System.out.println(response.getResults().get(0).getGeometry().getLocation().getLat());
         System.out.println(response.getResults().get(0).getGeometry().getLocation().getLng());
-
 //        System.out.println(response.results.get(0).geometry.location.lng);
-
         return "routeStart";
     }
 
-    @RequestMapping(value = "/routeStart", method = RequestMethod.POST)
+    @RequestMapping(value = "/map/routeStart", method = RequestMethod.POST)
     public String createRoute(@RequestParam("address") String address) {
 
         return "routeLeg";
     }
 
-    @RequestMapping("/map")
+    @RequestMapping("/map/routeLeg")
+    public String addRouteLeg(@RequestParam("leg") String leg) {
+
+        return "routeLeg";
+    }
+
+    @RequestMapping("/map/routeEnd")
     public String testMap(Model model) throws IOException {
 
         ApiKey apiKey = new ApiKey();

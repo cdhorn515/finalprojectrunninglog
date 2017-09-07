@@ -15,9 +15,16 @@ public class Run {
     private Date date;
     private float distance;
     private Time time;
+    @Transient
     private int hour;
+    @Transient
     private int minute;
+    @Transient
     private int second;
+
+    @ManyToOne
+    @JoinColumn(name = "map_route_id")
+    private Map map;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -85,5 +92,13 @@ public class Run {
 
     public void setSecond(int second) {
         this.second = second;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 }
