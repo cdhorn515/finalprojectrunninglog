@@ -19,11 +19,11 @@
                    th:value="${_csrf.token}"/>
             <input type="date" name="date" required="required"/>
             <input type="number" step="0.01" min="0" name="distance" required="required"/>
-            <input type="number" min="0" max="12" name="hour" placeholder="hours"/>
+            <input type="number" min="0" max="12" name="hour" placeholder="00"/>
             :
-            <input type="number" min="0" max="59" name="minute" placeholder="minutes"/>
+            <input type="number" min="0" max="59" name="minute" placeholder="00"/>
             :
-            <input type="number" min="0" max="59" name="second" placeholder="seconds"/>
+            <input type="number" min="0" max="59" name="second" placeholder="00"/>
             <!--<input class="without" type="time" step="01" min="00:00" max="23:59" name="time" required="required"/>-->
             <!--<input type="time" name="time" required="required"/>-->
             <input type="submit" value="Add"/>

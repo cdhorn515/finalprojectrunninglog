@@ -44,19 +44,30 @@ public class UserController {
     @RequestMapping(value = "/user/addRun", method = RequestMethod.POST)
     public String addRun(@RequestParam("date") Date date,
                          @RequestParam("distance") float distance,
-                         @RequestParam("hour") int hour,
-                         @RequestParam("minute") int minute,
-                         @RequestParam("second") int second,
+                         @RequestParam("hour") String hour,
+                         @RequestParam("minute") String minute,
+                         @RequestParam("second") String second,
                          Principal principal) {
         String username = principal.getName();
         User user = userRepo.findByUsername(username);
         Run userRun = new Run();
+        if (hour == "") {
+            hour = "00";
+        }
+        if (minute == "") {
+            minute = "00";
+        }
+        if (second == "") {
+            second = "00";
+        }
         String time = hour + ":" + minute + ":" + second;
+        System.out.println("/////////////////////////");
+        System.out.println(time);
         userRun.setDate(date);
         userRun.setDistance(distance);
-        userRun.setHour(hour);
-        userRun.setMinute(minute);
-        userRun.setSecond(second);
+//        userRun.setHour(hour);
+//        userRun.setMinute(minute);
+//        userRun.setSecond(second);
         Time runTime = Time.valueOf(time);
         System.out.println(runTime);
         userRun.setTime(runTime);
