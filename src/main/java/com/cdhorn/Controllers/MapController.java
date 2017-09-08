@@ -54,8 +54,8 @@ public class MapController {
         newMap.setStartPosition(startPosition);
         mapRepo.save(newMap);
         long mapId = newMap.getId();
-        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLat());
-        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLng());
+//        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLat());
+//        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLng());
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
 //        model.addAttribute("address", address);
@@ -89,7 +89,7 @@ public class MapController {
         double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
         String endPosition = lat + "," + lng;
         System.out.println("--------------------------------------------------------");
-        System.out.println(endPosition);
+//        System.out.println(endPosition);
         long intMapId = Integer.valueOf(mapId);
         Map updateMap = mapRepo.findOne(intMapId);
 
@@ -124,17 +124,16 @@ public class MapController {
         GeocodingResponse response = geocodingInterface.geocodingResponse(addressNoSpaces + "+greenville+sc", apiKey.getGEOCODING_API());
         double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
         double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
-        String legs = lat + "," + lng;
+        String legs = lat + "%2C" + lng;
         long intMapId = Integer.valueOf(mapId);
         Map updateMap = mapRepo.findOne(intMapId);
         String currentLegs = updateMap.getLegs();
         if (currentLegs == null) {
             updateMap.setLegs(legs);
         } else {
-            String updatedLegsString = currentLegs + "%7C" + legs;
+            String updatedLegsString = currentLegs + "%7Cvia:" + legs;
             updateMap.setLegs(updatedLegsString);
         }
-
         mapRepo.save(updateMap);
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
@@ -152,17 +151,25 @@ public class MapController {
         myRun.setMap(myMap);
         runRepo.save(myRun);
         String startPosition = myMap.getStartPosition();
+//        System.out.println(startPosition);
         String endPosition = myMap.getEndPosition();
+//        System.out.println(endPosition);
+        String waypoints = myMap.getLegs();
+//        System.out.println(waypoints);
         ApiKey apiKey = new ApiKey();
         DirectionsInterface directionsInterface = Feign.builder()
                 .decoder(new GsonDecoder())
                 .target(DirectionsInterface.class, "https://maps.googleapis.com");
-        DirectionResponse response = directionsInterface.directionResponse(startPosition, endPosition, apiKey.getDIRECTIONS_API());
+        DirectionResponse response = directionsInterface.directionResponse(startPosition, endPosition, waypoints, apiKey
+                .getDIRECTIONS_API());
+        System.out.println(response);
         String polyline = response.getRoutes().get(0).getOverview_polyline().getPoints();
         System.out.println(polyline);
         System.out.println("");
         String reformattedPolyline = polyline.replace("|", "%7C");
+        String newReformattedPolyline = reformattedPolyline.replace("`", "%60");
         System.out.println(reformattedPolyline);
+        System.out.println(newReformattedPolyline);
         System.out.println("");
 
         ApiStaticMap apiStaticMap = new ApiStaticMap();
@@ -172,12 +179,15 @@ public class MapController {
         String pathParams = apiStaticMap.getPathParameters();
         String staticMapApiKeyParams = apiStaticMap.getStaticMapApiKey();
 
-        url += startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + reformattedPolyline;
+        String newUrl = url + startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + newReformattedPolyline;
+        url += startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + newReformattedPolyline;
 //
-        myMap.setUrl(url);
+        myMap.setUrl(newUrl);
         mapRepo.save(myMap);
+        System.out.println(newUrl);
+        System.out.println("");
         System.out.println(url);
-        model.addAttribute("url", url);
+        model.addAttribute("newUrl", newUrl);
         return "map";
 
     }

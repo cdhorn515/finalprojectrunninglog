@@ -16,6 +16,8 @@ import java.security.Principal;
 import java.sql.Date;
 import java.sql.Time;
 
+import java.text.SimpleDateFormat;
+
 
 @Controller
 public class UserController {
@@ -85,12 +87,11 @@ public class UserController {
                             @RequestParam("date") String date,
                             @RequestParam("distance") float distance,
                             @RequestParam("time") String time,
-                            Model model) {
+                            Model model) throws Exception {
         Run userRun = runRepo.findOne(id);
-
-        userRun.setDistance(distance);
-        Date runDate = Date.valueOf(date);
+        java.util.Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
         Time runTime = Time.valueOf(time);
+        userRun.setDistance(distance);
         userRun.setDate(runDate);
         userRun.setTime(runTime);
         runRepo.save(userRun);

@@ -14,7 +14,7 @@
             <form th:action="'/user/updateRun/' + ${run.id}" method="post">
                 <input type="text" name="date" th:value="${run.date}"/>
                 :
-                <input type="number" name="distance" th:value="${run.distance}"/>
+                <input type="number" step="0.01" min="0" name="distance" th:value="${run.distance}"/>
                 :
                 <input type="text" name="time" th:value="${run.time}"/>
 
@@ -27,12 +27,6 @@
 
             </form>
 
-
-    <!--<form th:action="'/user/updateRun/' + ${run.id}" method="get">-->
-        <!--<input type="hidden" name="id" th:value="${run.id}"/>-->
-        <!--<input type="submit" value="Update"/>-->
-
-    <!--</form>-->
 </div>
 
 <span th:include="includes :: js"></span>
