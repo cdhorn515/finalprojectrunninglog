@@ -88,8 +88,7 @@ public class MapController {
         double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
         double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
         String endPosition = lat + "," + lng;
-        System.out.println("--------------------------------------------------------");
-//        System.out.println(endPosition);
+
         long intMapId = Integer.valueOf(mapId);
         Map updateMap = mapRepo.findOne(intMapId);
 
@@ -124,7 +123,7 @@ public class MapController {
         GeocodingResponse response = geocodingInterface.geocodingResponse(addressNoSpaces + "+greenville+sc", apiKey.getGEOCODING_API());
         double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
         double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
-        String legs = lat + "%2C" + lng;
+        String legs = lat + "," + lng;
         long intMapId = Integer.valueOf(mapId);
         Map updateMap = mapRepo.findOne(intMapId);
         String currentLegs = updateMap.getLegs();
@@ -151,11 +150,8 @@ public class MapController {
         myRun.setMap(myMap);
         runRepo.save(myRun);
         String startPosition = myMap.getStartPosition();
-//        System.out.println(startPosition);
         String endPosition = myMap.getEndPosition();
-//        System.out.println(endPosition);
         String waypoints = myMap.getLegs();
-//        System.out.println(waypoints);
         ApiKey apiKey = new ApiKey();
         DirectionsInterface directionsInterface = Feign.builder()
                 .decoder(new GsonDecoder())
@@ -166,11 +162,11 @@ public class MapController {
         String polyline = response.getRoutes().get(0).getOverview_polyline().getPoints();
         System.out.println(polyline);
         System.out.println("");
-        String reformattedPolyline = polyline.replace("|", "%7C");
-        String newReformattedPolyline = reformattedPolyline.replace("`", "%60");
-        System.out.println(reformattedPolyline);
-        System.out.println(newReformattedPolyline);
-        System.out.println("");
+//        String reformattedPolyline = polyline; // polyline.replace("|", "%7C");
+//        String newReformattedPolyline = reformattedPolyline; // reformattedPolyline.replace("`", "%60");
+//        System.out.println(reformattedPolyline);
+//        System.out.println(newReformattedPolyline);
+//        System.out.println("");
 
         ApiStaticMap apiStaticMap = new ApiStaticMap();
         String url = apiStaticMap.getStaticMapUrl();
@@ -179,15 +175,15 @@ public class MapController {
         String pathParams = apiStaticMap.getPathParameters();
         String staticMapApiKeyParams = apiStaticMap.getStaticMapApiKey();
 
-        String newUrl = url + startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + newReformattedPolyline;
-        url += startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + newReformattedPolyline;
-//
-        myMap.setUrl(newUrl);
+//        String newUrl = url + startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + newReformattedPolyline;
+        url += startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + polyline;
+
+        myMap.setUrl(url);
         mapRepo.save(myMap);
-        System.out.println(newUrl);
+//        System.out.println(newUrl);
         System.out.println("");
         System.out.println(url);
-        model.addAttribute("newUrl", newUrl);
+        model.addAttribute("url", url);
         return "map";
 
     }
