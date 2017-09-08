@@ -10,6 +10,7 @@ import com.cdhorn.Interfaces.MapRepository;
 import com.cdhorn.Interfaces.RunRepository;
 import com.cdhorn.Models.Map;
 import com.cdhorn.Models.Run;
+import com.cdhorn.Models.User;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class MapController {
 
     @RequestMapping(value = "/map/{runId}/routeStart", method = RequestMethod.POST)
     public String createRoute(@PathVariable("runId") String runId,
-            @RequestParam("address") String address,
+                              @RequestParam("address") String address,
+                              @RequestParam("route_name") String route_name,
                               Model model) {
         String addressNoSpaces = address.replace(" ", "+");
         ApiKey apiKey = new ApiKey();
@@ -52,13 +54,16 @@ public class MapController {
         String startPosition = lat + "," + lng;
         Map newMap = new Map();
         newMap.setStartPosition(startPosition);
+        newMap.setRouteName(route_name);
+        long intRunId = Integer.valueOf(runId);
+        ///////////////////////////////
+        Run myRun = runRepo.findOne(intRunId);
+        User user = myRun.getUser();
+        newMap.setUser(user);
         mapRepo.save(newMap);
         long mapId = newMap.getId();
-//        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLat());
-//        System.out.println(response.getResults().get(0).getGeometry().getLocation().getLng());
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
-//        model.addAttribute("address", address);
         return "redirect:/map/{runId}/routeEnd/" + mapId + "/" + address;
     }
 
@@ -130,7 +135,7 @@ public class MapController {
         if (currentLegs == null) {
             updateMap.setLegs(legs);
         } else {
-            String updatedLegsString = currentLegs + "%7Cvia:" + legs;
+            String updatedLegsString = currentLegs + "|" + legs;
             updateMap.setLegs(updatedLegsString);
         }
         mapRepo.save(updateMap);
@@ -158,15 +163,7 @@ public class MapController {
                 .target(DirectionsInterface.class, "https://maps.googleapis.com");
         DirectionResponse response = directionsInterface.directionResponse(startPosition, endPosition, waypoints, apiKey
                 .getDIRECTIONS_API());
-        System.out.println(response);
         String polyline = response.getRoutes().get(0).getOverview_polyline().getPoints();
-        System.out.println(polyline);
-        System.out.println("");
-//        String reformattedPolyline = polyline; // polyline.replace("|", "%7C");
-//        String newReformattedPolyline = reformattedPolyline; // reformattedPolyline.replace("`", "%60");
-//        System.out.println(reformattedPolyline);
-//        System.out.println(newReformattedPolyline);
-//        System.out.println("");
 
         ApiStaticMap apiStaticMap = new ApiStaticMap();
         String url = apiStaticMap.getStaticMapUrl();
@@ -175,12 +172,10 @@ public class MapController {
         String pathParams = apiStaticMap.getPathParameters();
         String staticMapApiKeyParams = apiStaticMap.getStaticMapApiKey();
 
-//        String newUrl = url + startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + newReformattedPolyline;
         url += startMarker + startPosition + finishMarker + endPosition + staticMapApiKeyParams + apiKey.getSTATIC_MAP_API() + pathParams + polyline;
 
         myMap.setUrl(url);
         mapRepo.save(myMap);
-//        System.out.println(newUrl);
         System.out.println("");
         System.out.println(url);
         model.addAttribute("url", url);
