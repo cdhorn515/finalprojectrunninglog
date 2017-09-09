@@ -195,7 +195,7 @@ public class MapController {
         return "redirect:/user";
     }
 
-    @RequestMapping("/map/{runId}/routeSelect")
+    @RequestMapping(value = "/map/{runId}/routeSelect", method = RequestMethod.POST)
     public String selectPreviousRoute(@PathVariable("runId") String runId,
                                       @RequestParam("map_id") String map_id) {
         long myMapId = Long.parseLong(map_id);
@@ -203,6 +203,7 @@ public class MapController {
         long myRunId = Long.parseLong(runId);
         Run myRun = runRepo.findOne(myRunId);
         myRun.setMap(myMap);
+        runRepo.save(myRun);
         return "redirect:/user";
     }
 
