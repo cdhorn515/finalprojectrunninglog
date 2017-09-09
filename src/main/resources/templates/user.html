@@ -23,7 +23,7 @@
             <td th:text="${run.date}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.time}"></td>
-            <td>Map</td>
+            <td><a th:target="_blank" th:href="${run.map.url}" th:text="${run.map.routeName}"></a></td>
             <td>
                 <form action="/user/deleteRun" method="post">
                     <input type="hidden"
