@@ -23,7 +23,6 @@
             <td th:text="${run.date}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.time}"></td>
-            <!--<td><a th:target="_blank" th:href="${run.map.url}" th:text="${run.map.routeName}"></a></td>-->
             <td>
                 <form th:action="'/map/' + ${run.id}" method="get">
                     <input type="hidden"

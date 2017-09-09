@@ -3,7 +3,7 @@ package com.cdhorn.Classes;
 
 public class ApiStaticMap {
 
-    private String staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=500x500";
+    private String staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=250x250";
     private String startMarkerParameters = "&markers=size:mid%7Ccolor:green%7Clabel:S%7C";
     private String finishMarkerParameters = "&markers=size:mid%7Ccolor:red%7Clabel:F%7C";
     private String pathParameters = "&path=color:blue%7Cenc:";

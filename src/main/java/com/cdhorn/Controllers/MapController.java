@@ -71,7 +71,6 @@ public class MapController {
         newMap.setRouteName(route_name);
         if (shared.equals("Y")) {
             newMap.setShared(true);
-//            mapRepo.save(newMap);
         }
         long intRunId = Integer.valueOf(runId);
         Run myRun = runRepo.findOne(intRunId);
@@ -215,8 +214,13 @@ public class MapController {
 
         Map myMap = myRun.getMap();
         String url = myMap.getUrl();
-        if (myRun.getDistance() > 5) {
-           url = url.replace("zoom=14", "zoom=10");
+        url = url.replace("250x250", "500x500");
+        if (myRun.getDistance() > 7) {
+           url = url.replace("zoom=12", "zoom=10");
+        } else {
+            if (myRun.getDistance() < 4) {
+                url = url.replace("zoom=12", "zoom=14");
+            }
         }
         model.addAttribute("url", url);
         return "map";

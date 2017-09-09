@@ -35,7 +35,6 @@ public class HomeController {
             model.addAttribute("runs", userRuns);
         } catch (Exception ex) {}
         Iterable<Map> sharedMaps = mapRepo.findAllBySharedIsTrue();
-
         model.addAttribute("sharedMaps", sharedMaps);
         return "index";
     }

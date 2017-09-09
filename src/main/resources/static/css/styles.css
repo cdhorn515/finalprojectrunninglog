@@ -1,8 +1,8 @@
-.without::-webkit-datetime-edit-ampm-field {
-    display: none;
-}
+/*.without::-webkit-datetime-edit-ampm-field {*/
+    /*display: none;*/
+/*}*/
 
 .mapPic{
-    height: 400px;
-    width: 400px;
+    height: 200px;
+    width: 4200px;
 }
