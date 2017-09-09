@@ -11,8 +11,7 @@ public class Map {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @Column(name = "ispublic")
-    private boolean shared;
+    private boolean shared = false;
     @Column(name = "startposition")
     private String startPosition;
     @Column(name = "endposition")

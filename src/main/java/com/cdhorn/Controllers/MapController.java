@@ -33,7 +33,17 @@ public class MapController {
     @RequestMapping("/map/{runId}/routeStart")
     public String createRoute(Model model,
                               @PathVariable("runId") String runId) {
-
+        try {
+            long myRunId = Long.parseLong(runId);
+            System.out.println(runId);
+            Run myRun = runRepo.findOne(myRunId);
+            System.out.println(myRun);
+            User myRunUser = myRun.getUser();
+            System.out.println(myRunUser);
+            Iterable<Map> myMaps = mapRepo.findAllByUser(myRunUser);
+            System.out.println(myMaps);
+            model.addAttribute("myMaps", myMaps);
+        } catch (Exception ex) {}
         model.addAttribute("runId", runId);
         return "routeStart";
     }
@@ -44,6 +54,8 @@ public class MapController {
                               @RequestParam("route_name") String route_name,
                               @RequestParam("shared") String shared,
                               Model model) {
+        System.out.println("Value of shared:");
+        System.out.println(shared);
         String addressNoSpaces = address.replace(" ", "+");
         ApiKey apiKey = new ApiKey();
         GeocodingInterface geocodingInterface = Feign.builder()
@@ -57,8 +69,9 @@ public class MapController {
         Map newMap = new Map();
         newMap.setStartPosition(startPosition);
         newMap.setRouteName(route_name);
-        if (shared == "Y") {
+        if (shared.equals("Y")) {
             newMap.setShared(true);
+//            mapRepo.save(newMap);
         }
         long intRunId = Integer.valueOf(runId);
         Run myRun = runRepo.findOne(intRunId);
@@ -179,6 +192,17 @@ public class MapController {
 
         myMap.setUrl(url);
         mapRepo.save(myMap);
+        return "redirect:/user";
+    }
+
+    @RequestMapping("/map/{runId}/routeSelect")
+    public String selectPreviousRoute(@PathVariable("runId") String runId,
+                                      @RequestParam("map_id") String map_id) {
+        long myMapId = Long.parseLong(map_id);
+        Map myMap = mapRepo.findOne(myMapId);
+        long myRunId = Long.parseLong(runId);
+        Run myRun = runRepo.findOne(myRunId);
+        myRun.setMap(myMap);
         return "redirect:/user";
     }
 

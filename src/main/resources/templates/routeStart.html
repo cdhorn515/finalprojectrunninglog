@@ -10,9 +10,25 @@
 <div class="container">
     <h1>create route page</h1>
 
-    <form th:action="'/map/' + ${runId} + '/routeStart/'" method="post">
+    <h2>You can choose from a previously created route:</h2>
+    <form th:action="'/map/' + ${runId} + '/routeSelect'" method="post">
+
+        <div class="form-group">
+            <label for="map_id">Route:</label>
+            <select name="map_id" class="form-control" id="map_id">
+                <option>-------</option>
+                <option th:value="${map.id}" th:each="map : ${myMaps}"
+                        th:text="${map.routeName}"></option>
+            </select>
+            <input type="submit" value="Add route"/>
+
+        </div>
+    </form>
+
+    <h2>Or create a new route:</h2>
+    <form th:action="'/map/' + ${runId} + '/routeStart'" method="post">
         <h3>Give your route a name:</h3>
-        <input type="text" name="route_name" it="route_name"/>
+        <input type="text" name="route_name" it="route_name" required="required"/>
         <h3>Would you like your route to be viewable by others?</h3>
 
         <div class="col-sm-6">
@@ -38,11 +54,11 @@
                th:value="${_csrf.token}"/>
 
         <label for="address"></label>
-        <input type="text" name="address" id="address"/>
+        <input type="text" name="address" id="address" required="required"/>
         <input type="hidden" name="city" id="city" value="Greenville"/>
         <input type="hidden" name="state" id="state" value="SC"/>
         <input type="hidden" th:value="${runId}"/>
-        <input type="submit" value="Add leg"/>
+        <input type="submit" value="Add start position"/>
     </form>
 
 
