@@ -1,9 +1,9 @@
 package com.cdhorn.Controllers;
 
+import com.cdhorn.Classes.ApiKey;
+import com.cdhorn.Classes.ApiStaticMap;
 import com.cdhorn.Classes.DirectionResponse;
 import com.cdhorn.Classes.GeocodingResponse;
-import com.cdhorn.GoogleMaps.ApiKey;
-import com.cdhorn.GoogleMaps.ApiStaticMap;
 import com.cdhorn.Interfaces.DirectionsInterface;
 import com.cdhorn.Interfaces.GeocodingInterface;
 import com.cdhorn.Interfaces.MapRepository;
@@ -33,6 +33,7 @@ public class MapController {
     @RequestMapping("/map/{runId}/routeStart")
     public String createRoute(Model model,
                               @PathVariable("runId") String runId) {
+
         model.addAttribute("runId", runId);
         return "routeStart";
     }
@@ -41,6 +42,7 @@ public class MapController {
     public String createRoute(@PathVariable("runId") String runId,
                               @RequestParam("address") String address,
                               @RequestParam("route_name") String route_name,
+                              @RequestParam("shared") String shared,
                               Model model) {
         String addressNoSpaces = address.replace(" ", "+");
         ApiKey apiKey = new ApiKey();
@@ -55,8 +57,10 @@ public class MapController {
         Map newMap = new Map();
         newMap.setStartPosition(startPosition);
         newMap.setRouteName(route_name);
+        if (shared == "Y") {
+            newMap.setShared(true);
+        }
         long intRunId = Integer.valueOf(runId);
-        ///////////////////////////////
         Run myRun = runRepo.findOne(intRunId);
         User user = myRun.getUser();
         newMap.setUser(user);
@@ -146,8 +150,7 @@ public class MapController {
 
     @RequestMapping(value = "/map/{runId}/createMap/{mapId}")
     public String testMap(@PathVariable("runId") String runId,
-                          @PathVariable("mapId") String mapId,
-                          Model model) {
+                          @PathVariable("mapId") String mapId) {
         long intMapId = Integer.valueOf(mapId);
         Map myMap = mapRepo.findOne(intMapId);
         long intRunId = Integer.valueOf(runId);
@@ -176,11 +179,22 @@ public class MapController {
 
         myMap.setUrl(url);
         mapRepo.save(myMap);
-        System.out.println("");
-        System.out.println(url);
+        return "redirect:/user";
+    }
+
+    @RequestMapping("/map/{runId}")
+    public String displayMap(@PathVariable("runId") String runId,
+                             Model model) {
+        long intRunId = Integer.valueOf(runId);
+        Run myRun = runRepo.findOne(intRunId);
+
+        Map myMap = myRun.getMap();
+        String url = myMap.getUrl();
+        if (myRun.getDistance() > 5) {
+           url = url.replace("zoom=14", "zoom=10");
+        }
         model.addAttribute("url", url);
         return "map";
-
     }
 
 }

@@ -13,20 +13,20 @@
     <form th:action="'/map/' + ${runId} + '/routeStart/'" method="post">
         <h3>Give your route a name:</h3>
         <input type="text" name="route_name" it="route_name"/>
-        <h3>Would you like others to be able to see your route?</h3>
+        <h3>Would you like your route to be viewable by others?</h3>
 
         <div class="col-sm-6">
             <div class="form-group">
                 <div class="radio-inline gender">
                     <label class="col-sm-2 control-label">
-                        <input type="radio" th:field="*{ispublic}" name="ispublic" id="true" value="Y"/>
-                        Male
+                        <input type="radio" name="shared" id="true" value="Y"/>
+                        Yes
                     </label>
                 </div>
                 <div class="radio-inline gender">
                     <label class="col-sm-2 control-label">
-                        <input type="radio" th:field="*{ispublic}" name="ispublic" id="false" value="N"/>
-                        Female
+                        <input type="radio" name="shared" id="false" value="N"/>
+                        No
                     </label>
                 </div>
             </div>

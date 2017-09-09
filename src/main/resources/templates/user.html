@@ -23,7 +23,20 @@
             <td th:text="${run.date}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.time}"></td>
-            <td><a th:target="_blank" th:href="${run.map.url}" th:text="${run.map.routeName}"></a></td>
+            <!--<td><a th:target="_blank" th:href="${run.map.url}" th:text="${run.map.routeName}"></a></td>-->
+            <td>
+                <form th:action="'/map/' + ${run.id}" method="get">
+                    <input type="hidden"
+                           th:name="${_csrf.parameterName}"
+                           th:value="${_csrf.token}"/>
+                    <input type="hidden" name="id" th:value="${run.id}"/>
+                    <input type="submit" th:value="${run.map.routeName}"/>
+                    <!--<a th:text="${run.map.routeName}"></a>-->
+                    <!--<a th:target="_blank" th:href="'/map/' + ${runId}" th:text="${run.map.routeName}"></a>-->
+                </form>
+
+            </td>
+
             <td>
                 <form action="/user/deleteRun" method="post">
                     <input type="hidden"
