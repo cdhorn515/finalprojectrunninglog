@@ -12,7 +12,7 @@ public class Map {
     private long id;
 
     @Column(name = "ispublic")
-    private boolean isPublic = false;
+    private boolean shared;
     @Column(name = "startposition")
     private String startPosition;
     @Column(name = "endposition")
@@ -37,12 +37,12 @@ public class Map {
         this.id = id;
     }
 
-    public boolean isPublic() {
-        return isPublic;
+    public boolean shared() {
+        return shared;
     }
 
-    public void setPublic(boolean aPublic) {
-        isPublic = aPublic;
+    public void setShared(boolean aShared) {
+        shared = aShared;
     }
 
     public String getStartPosition() {

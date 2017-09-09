@@ -3,7 +3,6 @@ package com.cdhorn.GoogleMaps;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 
@@ -12,7 +11,7 @@ import java.util.ResourceBundle;
 public class ApiKey {
 
     ResourceBundle bundle = ResourceBundle.getBundle("apikey");
-    private Enumeration<String> keys = (Enumeration<String>) bundle.getKeys();
+//    private Enumeration<String> keys = (Enumeration<String>) bundle.getKeys();
     private String DIRECTIONS_API = bundle.getString("DIRECTIONS_KEY");
     private String STATIC_MAP_API = bundle.getString("STATIC_MAP_KEY");
     private String GEOCODING_API = bundle.getString("GEOCODING_KEY");
