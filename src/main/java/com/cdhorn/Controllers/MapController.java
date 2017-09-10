@@ -209,7 +209,7 @@ public class MapController {
     @RequestMapping("/map/{runId}")
     public String displayMap(@PathVariable("runId") String runId,
                              Model model) {
-        long intRunId = Integer.valueOf(runId);
+        long intRunId = Long.parseLong(runId);
         Run myRun = runRepo.findOne(intRunId);
 
         Map myMap = myRun.getMap();

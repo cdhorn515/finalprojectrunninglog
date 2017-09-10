@@ -12,17 +12,25 @@
 <div class="container">
     <h1>Local running routes:</h1>
 
+
     <div class="row">
-    <div th:each="map : ${sharedMaps}" class="col-md-4 col-sm-12">
-        <div class="mapPic">
-
-            <img th:src="${map.url}" alt="pic of map"/>
-
+        <div th:each="map : ${sharedMaps}">
+            <!--<form th:action="'/' + ${map.id}" method="get">-->
+                <div class="mapPic">
+                    <div class="col-md-4">
+                        <a th:href="'/getMap/' + ${map.id}">
+                        <img th:src="${map.url}" alt="pic of map"/>
+                        <!--<input type="hidden" name="mapId" th:value="${map.id}" id="mapId"/>-->
+                        </a>
+                        <!--<input class="map-button" type="submit"/>-->
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            <!--</form>-->
         </div>
     </div>
-        <!--pic goes on right, check boostrap docs for col-->
-        <div class="col-md-6"></div>
-    </div>
+    <!--pic goes on right, check boostrap docs for col-->
+
 </div>
 <span th:include="includes :: js"></span>
 

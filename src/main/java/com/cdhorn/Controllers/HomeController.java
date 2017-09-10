@@ -9,6 +9,7 @@ import com.cdhorn.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -39,6 +40,17 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/getMap/{mapId}")
+    public String displaySharedMap(@PathVariable("mapId") String mapId,
+                                   Model model) {
+        long myMapId = Long.parseLong(mapId);
+        Map myMap = mapRepo.findOne(myMapId);
+        String url = myMap.getUrl();
+        url = url.replace("size=250x250", "size=500x500");
+        url = url.replace("zoom=12", "zoom=13");
+        model.addAttribute("url", url);
+        return "map";
+    }
 }
 
 
