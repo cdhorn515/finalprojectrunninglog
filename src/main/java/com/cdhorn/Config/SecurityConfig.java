@@ -63,11 +63,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     .loginPage("/login")
                     .successHandler(loginSuccessHandler())
                     .failureHandler(loginFailureHandler())
+//                    .loginPage("/login/admin")
+//                    .successHandler(adminLoginSuccessHandler())
+//                    .failureHandler(adminLoginFailureHandler())
                     .and()
                 .logout()
                     .permitAll()
                     .logoutSuccessUrl("/login");
     }
+
+//    private AuthenticationSuccessHandler adminLoginSuccessHandler() {
+//        return (request, response, authentication) -> response.sendRedirect("/admin");
+//    }
+//
+//    private AuthenticationFailureHandler adminLoginFailureHandler() {
+//        return (request, response, exception) -> {
+//            request.getSession().setAttribute("error", "Unable to login with provided credentials");
+//            response.sendRedirect("/admin/login");
+//        };
+//    }
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
         return (request, response, authentication) -> response.sendRedirect("/user");

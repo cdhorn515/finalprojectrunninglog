@@ -23,14 +23,14 @@ public class AdminController {
             String username = principal.getName();
             model.addAttribute("username", username);
         } catch (Exception ex) {
-            return "redirect:/login";
+            return "redirect:/login/admin";
         }
         Iterable<User> allUsers = userRepo.findAll();
         model.addAttribute("users", allUsers);
         return "admin";
     }
 
-    @RequestMapping("/admin/login")
+    @RequestMapping("/login/admin")
     public String adminLogin(Model model, HttpServletRequest request) {
         model.addAttribute("user", new User());
         try {

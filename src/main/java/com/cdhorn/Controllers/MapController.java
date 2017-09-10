@@ -1,9 +1,6 @@
 package com.cdhorn.Controllers;
 
-import com.cdhorn.Classes.ApiKey;
-import com.cdhorn.Classes.ApiStaticMap;
-import com.cdhorn.Classes.DirectionResponse;
-import com.cdhorn.Classes.GeocodingResponse;
+import com.cdhorn.Classes.*;
 import com.cdhorn.Interfaces.DirectionsInterface;
 import com.cdhorn.Interfaces.GeocodingInterface;
 import com.cdhorn.Interfaces.MapRepository;
@@ -35,13 +32,9 @@ public class MapController {
                               @PathVariable("runId") String runId) {
         try {
             long myRunId = Long.parseLong(runId);
-            System.out.println(runId);
             Run myRun = runRepo.findOne(myRunId);
-            System.out.println(myRun);
             User myRunUser = myRun.getUser();
-            System.out.println(myRunUser);
             Iterable<Map> myMaps = mapRepo.findAllByUser(myRunUser);
-            System.out.println(myMaps);
             model.addAttribute("myMaps", myMaps);
         } catch (Exception ex) {}
         model.addAttribute("runId", runId);
@@ -54,8 +47,6 @@ public class MapController {
                               @RequestParam("route_name") String route_name,
                               @RequestParam("shared") String shared,
                               Model model) {
-        System.out.println("Value of shared:");
-        System.out.println(shared);
         String addressNoSpaces = address.replace(" ", "+");
         ApiKey apiKey = new ApiKey();
         GeocodingInterface geocodingInterface = Feign.builder()
@@ -163,10 +154,10 @@ public class MapController {
     @RequestMapping(value = "/map/{runId}/createMap/{mapId}")
     public String testMap(@PathVariable("runId") String runId,
                           @PathVariable("mapId") String mapId) {
-        long intMapId = Integer.valueOf(mapId);
-        Map myMap = mapRepo.findOne(intMapId);
-        long intRunId = Integer.valueOf(runId);
-        Run myRun = runRepo.findOne(intRunId);
+        long myMapId = Long.parseLong(mapId);
+        Map myMap = mapRepo.findOne(myMapId);
+        long myRunId = Long.parseLong(runId);
+        Run myRun = runRepo.findOne(myRunId);
         myRun.setMap(myMap);
         runRepo.save(myRun);
         String startPosition = myMap.getStartPosition();
@@ -196,8 +187,8 @@ public class MapController {
 
     @RequestMapping(value = "/map/{runId}/routeSelect", method = RequestMethod.POST)
     public String selectPreviousRoute(@PathVariable("runId") String runId,
-                                      @RequestParam("map_id") String map_id) {
-        long myMapId = Long.parseLong(map_id);
+                                      @RequestParam("map_id") String mapId) {
+        long myMapId = Long.parseLong(mapId);
         Map myMap = mapRepo.findOne(myMapId);
         long myRunId = Long.parseLong(runId);
         Run myRun = runRepo.findOne(myRunId);

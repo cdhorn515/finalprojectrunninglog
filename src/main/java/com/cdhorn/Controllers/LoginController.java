@@ -51,7 +51,9 @@ public class LoginController {
                              @RequestParam("age") int age,
                              @RequestParam("gender") char gender,
                              @RequestParam("city") String city,
-                             @RequestParam("state") String state) {
+                             @RequestParam("state") String state,
+                             @RequestParam("first") String first,
+                             @RequestParam("last") String last) {
         //create new instance of user model
         User user = new User();
         //set username on user instance
@@ -61,6 +63,8 @@ public class LoginController {
         user.setCity(city);
         StateAbbreviations selectedState = StateAbbreviations.valueOf(state);
         user.setState(selectedState);
+        user.setFirst(first);
+        user.setLast(last);
         //bcrypt encode pw
         String encryptedPassword = bCryptPasswordEncoder.encode(password);
         //set encrypted pw on user instance
