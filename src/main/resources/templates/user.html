@@ -9,33 +9,27 @@
 <div th:include="navbar :: user-navbar"></div>
 <div class="container">
 
-    <h1>user home page</h1>
+    <h1 th:inline="text">Welcome, [[${user.first}]]!</h1>
 
+<h3>Your tracked runs:</h3>
 
+<div class="responsive">
     <table class="table table-condensed">
         <tr>
             <th>Date</th>
             <th>Distance</th>
             <th>Time</th>
-            <th>Map</th>
+            <th>Map Link</th>
+            <th></th>
+            <th></th>
         </tr>
         <tr th:each="run : ${userRuns}">
             <td th:text="${run.date}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.time}"></td>
             <td>
-                <form th:action="'/map/' + ${run.id}" method="get">
-                    <input type="hidden"
-                           th:name="${_csrf.parameterName}"
-                           th:value="${_csrf.token}"/>
-                    <input type="hidden" name="id" th:value="${run.id}"/>
-                    <input type="submit" th:value="${run.map.routeName}"/>
-                    <!--<a th:text="${run.map.routeName}"></a>-->
-                    <!--<a th:target="_blank" th:href="'/map/' + ${runId}" th:text="${run.map.routeName}"></a>-->
-                </form>
-
+                <a th:href="'/getMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
             </td>
-
             <td>
                 <form action="/user/deleteRun" method="post">
                     <input type="hidden"
@@ -56,13 +50,7 @@
             </td>
         </tr>
     </table>
-
-    <!--<form th:action="@{/login}" method="post">-->
-        <!--<input type="hidden"-->
-               <!--th:name="${_csrf.parameterName}"-->
-               <!--th:value="${_csrf.token}"/>-->
-        <!--<input type="submit" value="Logout"/>-->
-    <!--</form>-->
+    </div>
 
 </div>
 <span th:include="includes :: js"></span>
