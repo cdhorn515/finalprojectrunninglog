@@ -197,13 +197,14 @@ public class MapController {
         return "redirect:/user";
     }
 
-    @RequestMapping("/displayMap/{runId}")
-    public String displayMap(@PathVariable("runId") String runId,
+    @RequestMapping("/displayMap/{mapId}")
+    public String displayMap(@PathVariable("mapId") String mapId,
                              Model model) {
-        long intRunId = Long.parseLong(runId);
-        Run myRun = runRepo.findOne(intRunId);
+        long longMapId = Long.parseLong(mapId);
+        Map myMap = mapRepo.findOne(longMapId);
+        Run myRun = runRepo.findFirstByMap(myMap);
 
-        Map myMap = myRun.getMap();
+
         String url = myMap.getUrl();
         url = url.replace("250x250", "500x500");
         if (myRun.getDistance() > 7) {

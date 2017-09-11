@@ -45,14 +45,4 @@ public class AdminController {
         return "user";
     }
 
-//    @RequestMapping("/login/admin")
-//    public String adminLogin(Model model, HttpServletRequest request) {
-//        model.addAttribute("user", new User());
-//        try {
-//            Object message = request.getSession().getAttribute("error");
-//            model.addAttribute("error", message);
-//        } catch (Exception ex) {}
-//
-//        return "adminLogin";
-//    }
 }

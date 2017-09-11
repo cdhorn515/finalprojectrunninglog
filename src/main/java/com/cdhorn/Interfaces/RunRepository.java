@@ -1,6 +1,7 @@
 package com.cdhorn.Interfaces;
 
 
+import com.cdhorn.Models.Map;
 import com.cdhorn.Models.Run;
 import com.cdhorn.Models.User;
 import org.springframework.data.repository.CrudRepository;
@@ -11,4 +12,5 @@ import java.util.List;
 @Repository
 public interface RunRepository extends CrudRepository<Run, Long> {
     List<Run> findAllByUser(User user);
+    Run findFirstByMap(Map map);
 }
