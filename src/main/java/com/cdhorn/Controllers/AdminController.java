@@ -1,6 +1,8 @@
 package com.cdhorn.Controllers;
 
+import com.cdhorn.Interfaces.RunRepository;
 import com.cdhorn.Interfaces.UserRepository;
+import com.cdhorn.Models.Run;
 import com.cdhorn.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private RunRepository runRepo;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model, Principal principal) {
@@ -25,7 +29,7 @@ public class AdminController {
         } catch (Exception ex) {
             return "redirect:/login/admin";
         }
-        Iterable<User> allUsers = userRepo.findAll();
+        Iterable<User> allUsers = userRepo.findByUsernameNot("admin");
         model.addAttribute("users", allUsers);
         return "admin";
     }
@@ -35,6 +39,8 @@ public class AdminController {
                                 @PathVariable("userId") String userId) {
         long longUserId = Long.parseLong(userId);
         User user = userRepo.findOne(longUserId);
+        Iterable<Run> userRuns = runRepo.findAllByUser(user);
+        model.addAttribute("userRuns", userRuns);
         model.addAttribute("user", user);
         return "user";
     }
