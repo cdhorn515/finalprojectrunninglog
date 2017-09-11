@@ -11,17 +11,27 @@
     <h1>Signup page</h1>
 
     <form th:action="@{/signup}" th:object="${user}" method="post">
-        <input type="text" th:field="*{first}" placeholder="First Name"/>
-        <input type="text" th:field="*{last}" placeholder="Last Name"/>
-        <input type="text" th:field="*{username}" placeholder="Username"/>
-        <input type="password" th:field="*{password}" placeholder="Password"/>
+        <!--<div class="row">-->
+        <div class="form-group">
+            <label for="first">First name:</label>
+        <input  type="text" th:field="*{first}" id="first" placeholder="First Name"/>
+            <label for="last">Last name:</label>
+        <input type="text" th:field="*{last}" id="last" placeholder="Last Name"/>
+        <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
 
+            <input type="text" th:field="*{username}" id="username" placeholder="Username"/>
+            <label for="password">Password:</label>
+        <input type="password" th:field="*{password}" id="password" placeholder="Password"/>
+        </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group form-inline age">
-                    <label for="age" class="col-sm-4 control-label agelabel">Age:</label>
+                    <label for="age" class="col-sm-3">Age:</label>
                     <div class="form-inline">
-                        <input type="number" min="0" name="age" th:field="*{age}" class="form-control ageinput"
+                        <input type="number" min="0" name="age" th:field="*{age}" class=" col-sm-2"
                                id="age"/>
                     </div>
                 </div>
@@ -48,10 +58,15 @@
         <input type="text" th:field="*{city}" placeholder="City"/>
         <div class="form-group">
             <label for="state">State:</label>
-            <select name="state" id="state" th:field="*{state}" class="form-control" required="required">
+            <div class="row">
+                <div class="col-xs-2">
+
+                <select name="state" id="state" th:field="*{state}" class="form-control" required="required">
                 <option value="">Select state below</option>
                 <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>
             </select>
+                </div>
+            </div>
         </div>
         <input type="submit" value="Signup"/>
 

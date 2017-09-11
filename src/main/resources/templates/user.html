@@ -24,11 +24,11 @@
             <th></th>
         </tr>
         <tr th:each="run : ${userRuns}">
-            <td th:text="${run.date}"></td>
+            <td th:text="${#dates.format(run.date, 'MM-dd-yyyy')}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.time}"></td>
             <td>
-                <a th:href="'/getMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
+                <a th:href="'/displayMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
             </td>
             <td>
                 <form action="/user/deleteRun" method="post">

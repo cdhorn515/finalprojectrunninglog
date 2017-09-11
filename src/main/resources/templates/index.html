@@ -16,7 +16,7 @@
         <div th:each="map : ${sharedMaps}">
             <div class="mapPic">
                 <div class="col-md-4">
-                    <a th:href="'/getMap/' + ${map.id}">
+                    <a th:href="'/displayMap/' + ${map.id}">
                         <img th:src="${map.url}" alt="pic of map"/>
                     </a>
                     <div class="col-md-2"></div>

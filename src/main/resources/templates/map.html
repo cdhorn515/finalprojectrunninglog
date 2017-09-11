@@ -7,11 +7,12 @@
 <span th:include="includes :: css"></span>
 
 <body>
-<div th:include="navbar :: user-navbar"></div>
+<div th:if="${user} == null" th:include="navbar :: visitor-navbar"></div>
+<div th:if="${user} != null" th:include="navbar :: user-navbar"></div>
 
 <div class="container">
 
-    <h1>Pic of map with path line should be displayed</h1>
+    <h1>Map of run route:</h1>
 
     <div class="mapPic">
 

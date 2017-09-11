@@ -197,7 +197,7 @@ public class MapController {
         return "redirect:/user";
     }
 
-    @RequestMapping("/map/{runId}")
+    @RequestMapping("/displayMap/{runId}")
     public String displayMap(@PathVariable("runId") String runId,
                              Model model) {
         long intRunId = Long.parseLong(runId);
