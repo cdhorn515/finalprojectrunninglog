@@ -8,11 +8,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
+import java.util.Collection;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -50,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         web.ignoring().antMatchers("/js/**");
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -57,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     .antMatchers("/").permitAll()
                     .antMatchers("/user/**").hasRole("USER")
                     .antMatchers("/map/**").hasRole("USER")
-//                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                     .loginPage("/login")
@@ -70,7 +73,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
-        return (request, response, authentication) -> response.sendRedirect("/user");
+        return (request, response, authentication) -> {
+            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+            for (GrantedAuthority grantedAuthority : authorities) {
+                if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+                    response.sendRedirect("/user");
+                    return;
+                } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                    response.sendRedirect("/admin");
+                    return;
+                }
+            }
+        };
     }
 
     private AuthenticationFailureHandler loginFailureHandler() {
