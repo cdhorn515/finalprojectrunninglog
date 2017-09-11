@@ -2,12 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Admin</title>
+    <span th:include="includes :: css"></span>
 </head>
 <body>
+<div th:include="navbar :: visitor-navbar"></div>
 <div class="container">
 
     <h1>Admin page</h1>
+
+    <h3>User information, click on username link to view user's page:</h3>
+
+    <div class="responsive">
+        <table class="table table-condensed">
+            <tr>
+                <th>Username</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Location</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td>
+                <a th:href="'/admin/user/' + ${user.id}" th:text="${user.username}"></a>
+                </td>
+                <td th:text="${user.first}"></td>
+                <td th:text="${user.last}"></td>
+                <td th:text="${user.gender}"></td>
+                <td th:text="${user.age}"></td>
+                <td> <p th:inline="text"> [[${user.city}]], [[${user.state}]]</p></td>
+            </tr>
+        </table>
+    </div>
+
 </div>
 </body>
 </html>
