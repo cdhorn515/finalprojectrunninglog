@@ -7,12 +7,10 @@
 
 </head>
 <body>
-<div th:if="${user} == null" th:include="navbar :: visitor-navbar"></div>
-<div th:if="${user} != null" th:include="navbar :: user-navbar"></div>
+<div th:include="navbar :: visitor-navbar"></div>
 <div class="container">
 
-    <span><h1 class="home-heading">Local running routes&nbsp;</h1><h4 class="home-heading">(click on map to enlarge)
-        :</h4></span>
+    <span><h1 class="home-heading">Local running routes&nbsp;</h1><h4 class="home-heading">(click on map to enlarge):</h4></span>
 
     <div class="map-container">
         <div class="row">
@@ -24,6 +22,7 @@
         </div>
     </div>
 </div>
+<div th:include="navbar :: main-footer"></div>
 <span th:include="includes :: js"></span>
 
 </body>

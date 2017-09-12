@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #C1E1A6;
+}
+
 .home-heading {
     display: inline-block;
 }
@@ -13,5 +17,8 @@
 .map-pic {
     margin: 10px;
     margin-bottom: 30px;
+}
 
+footer {
+    height: 60px;
 }

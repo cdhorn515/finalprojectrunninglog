@@ -31,18 +31,8 @@
         <input type="submit" value="Add leg"/>
     </form>
 
-<!--<h3>Add your ending location</h3>-->
-    <!--<form th:action="'/map/' + ${runId} +'routeEnd/' + ${mapId}" method="post">-->
-        <!--<input type="hidden"-->
-               <!--th:name="${_csrf.parameterName}"-->
-               <!--th:value="${_csrf.token}"/>-->
-        <!--<label for="leg"></label>-->
-        <!--<input type="text" name="endposition" id="endposition"/>-->
-        <!--<input type="hidden" th:value="${mapId}"/>-->
-        <!--<input type="hidden" th:value="${runId}"/>-->
-
-    <!--<input type="submit" value="End of route"/>-->
-    <!--</form>-->
+    <div th:include="navbar :: main-footer"></div>
+    <span th:include="includes :: js"></span>
 
 </div>
 </body>
