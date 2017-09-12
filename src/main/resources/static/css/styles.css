@@ -3,7 +3,8 @@
 }
 
 body {
-    background-color: #C1E1A6;
+    background-color: #9AC16C;
+    color: dimgray;
 }
 
 .home-heading {
@@ -21,4 +22,13 @@ body {
 
 footer {
     height: 60px;
+}
+
+.social {
+    color: dimgray;
+    margin-left: 15px;
+}
+
+.super {
+    vertical-align: super;
 }
