@@ -8,11 +8,12 @@ body {
 }
 
 .navbar-link {
-
+    line-height: 50px;
 }
 
 .container {
     margin-top: 70px;
+    height: 100vh;
 }
 
 .home-heading {
@@ -21,7 +22,6 @@ body {
 
 .map-container {
     width: 50%;
-    height: 100vh;
 }
 
 .map-pic {
@@ -33,9 +33,18 @@ footer {
     height: 60px;
 }
 
+.footer-icons {
+    line-height: 60px;
+}
+
 .social {
     color: dimgray;
     margin-left: 15px;
+}
+
+.icons {
+    margin-right: 10px!important;
+    margin-top: 5px;
 }
 
 .super {

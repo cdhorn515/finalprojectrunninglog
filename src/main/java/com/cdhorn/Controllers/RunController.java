@@ -28,8 +28,7 @@ public class RunController {
 
     @RequestMapping("/user/addRun")
     public String addRun(Model model, Principal principal) {
-        String username = principal.getName();
-        User user = userRepo.findByUsername(username);
+        User user = userRepo.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("newRun", new Run());
         return "addRun";
@@ -42,8 +41,7 @@ public class RunController {
                          @RequestParam("minute") String minute,
                          @RequestParam("second") String second,
                          Principal principal, Model model) {
-        String username = principal.getName();
-        User user = userRepo.findByUsername(username);
+        User user = userRepo.findByUsername(principal.getName());
         Run userRun = new Run();
         if (hour == "") {
             hour = "00";
@@ -70,8 +68,7 @@ public class RunController {
     public String updateRun(@PathVariable("id") long id,
                             Model model, Principal principal) {
         Run run = runRepo.findOne(id);
-        String username = principal.getName();
-        User user = userRepo.findByUsername(username);
+        User user = userRepo.findByUsername(principal.getName());
         model.addAttribute("user", user);
 
         model.addAttribute("run", run);

@@ -1,7 +1,6 @@
 package com.cdhorn.Controllers;
 
 import com.cdhorn.Interfaces.MapRepository;
-import com.cdhorn.Interfaces.RunRepository;
 import com.cdhorn.Interfaces.UserRepository;
 import com.cdhorn.Models.Map;
 import com.cdhorn.Models.User;
@@ -20,24 +19,21 @@ public class HomeController {
 
     @Autowired
     MapRepository mapRepo;
-    @Autowired
-    RunRepository runRepo;
+//    @Autowired
+//    RunRepository runRepo;
     @Autowired
     UserRepository userRepo;
 
     @RequestMapping("/")
     public String index(Model model, Principal principal) {
         try {
-//            String user = principal.getName();
             User user = userRepo.findByUsername(principal.getName());
-
             model.addAttribute("user", user);
-//            User newUser = userRepo.findByUsername(user);
-//            Iterable<Run> userRuns = runRepo.findAllByUser(newUser);
-//            model.addAttribute("runs", userRuns);
         } catch (Exception ex) {}
-        Iterable<Map> sharedMaps = mapRepo.findAllBySharedIsTrue();
-        model.addAttribute("sharedMaps", sharedMaps);
+        try {
+            Iterable<Map> sharedMaps = mapRepo.findAllBySharedIsTrue();
+            model.addAttribute("sharedMaps", sharedMaps);
+        } catch (Exception e) {}
         return "index";
     }
 

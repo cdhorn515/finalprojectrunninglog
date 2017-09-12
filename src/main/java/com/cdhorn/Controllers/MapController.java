@@ -31,14 +31,12 @@ public class MapController {
 
     @RequestMapping("/map/{runId}/routeStart")
     public String createRoute(Model model,
-                              @PathVariable("runId") String runId) {
+                              @PathVariable("runId") String runId, Principal principal) {
         try {
-            long myRunId = Long.parseLong(runId);
-            Run myRun = runRepo.findOne(myRunId);
-            User user = myRun.getUser();
+            User user = userRepo.findByUsername(principal.getName());
             Iterable<Map> myMaps = mapRepo.findAllByUser(user);
             model.addAttribute("myMaps", myMaps);
-            model.addAttribute("myRunUser", user);
+            model.addAttribute("user", user);
         } catch (Exception ex) {}
         model.addAttribute("runId", runId);
         return "routeStart";
@@ -81,10 +79,8 @@ public class MapController {
     public String routeEnd(@PathVariable("runId") String runId,
                            @PathVariable("mapId") String mapId,
                            Model model, Principal principal) {
-        String username = principal.getName();
-        User user = userRepo.findByUsername(username);
+        User user = userRepo.findByUsername(principal.getName());
         model.addAttribute("user", user);
-
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
 
@@ -123,8 +119,7 @@ public class MapController {
     public String addRouteLeg(@PathVariable("runId") String runId,
                               @PathVariable("mapId") String mapId,
                               Model model, Principal principal) {
-        String username = principal.getName();
-        User user = userRepo.findByUsername(username);
+        User user = userRepo.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
