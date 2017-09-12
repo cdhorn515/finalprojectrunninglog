@@ -10,22 +10,17 @@
 <div th:if="${user} == null" th:include="navbar :: visitor-navbar"></div>
 <div th:if="${user} != null" th:include="navbar :: user-navbar"></div>
 <div class="container">
-    <h1>Local running routes:</h1>
-
-    <div class="row">
-        <div th:each="map : ${sharedMaps}">
-            <div class="mapPic">
-                <div class="col-md-4">
-                    <a th:href="'/getMap/' + ${map.id}">
-                        <img th:src="${map.url}" alt="pic of map"/>
-                    </a>
-                    <div class="col-md-2"></div>
-                </div>
+    <h1>Local running routes (click on map to enlarge):</h1>
+    <div class="map-container">
+        <div class="row">
+            <div class="col-sm-6" th:each="map : ${sharedMaps}">
+                <a th:href="'/getMap/' + ${map.id}">
+                    <img th:src="${map.url}" alt="pic of map"/>
+                </a>
             </div>
+
         </div>
     </div>
-    <!--pic goes on right, check boostrap docs for col-->
-
 </div>
 <span th:include="includes :: js"></span>
 
