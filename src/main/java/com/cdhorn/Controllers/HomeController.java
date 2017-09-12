@@ -4,7 +4,6 @@ import com.cdhorn.Interfaces.MapRepository;
 import com.cdhorn.Interfaces.RunRepository;
 import com.cdhorn.Interfaces.UserRepository;
 import com.cdhorn.Models.Map;
-import com.cdhorn.Models.Run;
 import com.cdhorn.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +28,13 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Model model, Principal principal) {
         try {
-            String username = principal.getName();
-            model.addAttribute("username", username);
-            User user = userRepo.findByUsername(username);
-            Iterable<Run> userRuns = runRepo.findAllByUser(user);
-            model.addAttribute("runs", userRuns);
+//            String user = principal.getName();
+            User user = userRepo.findByUsername(principal.getName());
+
+            model.addAttribute("user", user);
+//            User newUser = userRepo.findByUsername(user);
+//            Iterable<Run> userRuns = runRepo.findAllByUser(newUser);
+//            model.addAttribute("runs", userRuns);
         } catch (Exception ex) {}
         Iterable<Map> sharedMaps = mapRepo.findAllBySharedIsTrue();
         model.addAttribute("sharedMaps", sharedMaps);
@@ -42,7 +43,11 @@ public class HomeController {
 
     @RequestMapping("/getMap/{mapId}")
     public String displaySharedMap(@PathVariable("mapId") String mapId,
-                                   Model model) {
+                                   Model model, Principal principal) {
+        try {
+            User user = userRepo.findByUsername(principal.getName());
+            model.addAttribute("user", user);
+        } catch (Exception ex) {}
         long myMapId = Long.parseLong(mapId);
         Map myMap = mapRepo.findOne(myMapId);
         String url = myMap.getUrl();

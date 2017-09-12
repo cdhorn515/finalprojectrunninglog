@@ -27,7 +27,10 @@ public class RunController {
     RunRepository runRepo;
 
     @RequestMapping("/user/addRun")
-    public String addRun(Model model) {
+    public String addRun(Model model, Principal principal) {
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        model.addAttribute("user", user);
         model.addAttribute("newRun", new Run());
         return "addRun";
     }
@@ -65,8 +68,12 @@ public class RunController {
 
     @RequestMapping(value = "/user/updateRun/{id}", method = RequestMethod.GET)
     public String updateRun(@PathVariable("id") long id,
-                            Model model) {
+                            Model model, Principal principal) {
         Run run = runRepo.findOne(id);
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        model.addAttribute("user", user);
+
         model.addAttribute("run", run);
         return "editRun";
     }

@@ -8,7 +8,7 @@
 <body>
 
 <div th:fragment="navbar">
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -21,13 +21,39 @@
             </button>
             <a class="navbar-brand" href="/">Running Routes</a>
         </div>
+        <span sec:authorize="hasRole('ROLE_USER')" th:inline="text">[[${user.first}]]'s page</span>
+
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li sec:authorize="!isAuthenticated()"><a href="/login">Log In</a></li>
-                <li sec:authorize="!isAuthenticated()"><a href="/signup">Sign Up</a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Log Out</a> </li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">Admin home</a></li>
+                <li class="navbar-link" sec:authorize="!isAuthenticated()">
+                    <form th:action="@{/login}" method="get">
+                        <input type="submit" value="Log In"/>
+                    </form></li>
+                    <!--<a href="/login">Log In</a></li>-->
+                <li class="navbar-link" sec:authorize="!isAuthenticated()">
+                    <form th:action="@{/signup}" method="get">
+                        <input type="submit" value="Sign Up"/>
+                    </form></li>
+                    <!--<a href="/signup">Sign Up</a></li>-->
+                <li class="navbar-link" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/user/addRun}" method="get">
+                        <input type="submit" value="Add Run"/>
+                    </form></li>
+                <li class="navbar-link">
+                    <form th:action="@{/}" method="get">
+                        <input type="submit" value="Homepage"/>
+                    </form></li>
+                <li class="navbar-link" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Log Out"/>
+                    </form></li>
+                    <!--<a th:href="@{/logout}">Log Out</a> </li>-->
+                <li class="navbar-link" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <form th:action="@{/admin}" method="get">
+                        <input type="submit" value="Admin Home"/>
+                    </form></li>
+                    <!--<a href="/admin">Admin home</a></li>-->
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

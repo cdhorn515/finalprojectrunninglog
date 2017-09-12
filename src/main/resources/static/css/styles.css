@@ -7,12 +7,21 @@ body {
     color: dimgray;
 }
 
+.navbar-link {
+
+}
+
+.container {
+    margin-top: 70px;
+}
+
 .home-heading {
     display: inline-block;
 }
 
 .map-container {
     width: 50%;
+    height: 100vh;
 }
 
 .map-pic {

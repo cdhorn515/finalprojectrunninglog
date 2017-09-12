@@ -77,4 +77,9 @@ public class LoginController {
         userRepo.save(user);
         return "redirect:/login";
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public String logOut() {
+        return "redirect:/";
+    }
 }

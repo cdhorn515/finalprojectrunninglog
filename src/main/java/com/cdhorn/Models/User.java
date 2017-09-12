@@ -123,13 +123,6 @@ public class User implements UserDetails{
     public void setState(StateAbbreviations state) {
         this.state = state;
     }
-    //    public String getState() {
-//        return state;
-//    }
-//
-//    public void setState(String state) {
-//        this.state = state;
-//    }
 
     public boolean isActive() {
         return active;
