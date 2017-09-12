@@ -1,6 +1,17 @@
+* {
+    box-sizing: border-box;
+}
 
+.home-heading {
+    display: inline-block;
+}
 
 .map-container {
     width: 50%;
 }
 
+.map-pic {
+    margin: 10px;
+    margin-bottom: 30px;
+
+}

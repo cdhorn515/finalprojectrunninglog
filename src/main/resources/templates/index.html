@@ -10,15 +10,17 @@
 <div th:if="${user} == null" th:include="navbar :: visitor-navbar"></div>
 <div th:if="${user} != null" th:include="navbar :: user-navbar"></div>
 <div class="container">
-    <h1>Local running routes (click on map to enlarge):</h1>
+
+    <span><h1 class="home-heading">Local running routes&nbsp;</h1><h4 class="home-heading">(click on map to enlarge)
+        :</h4></span>
+
     <div class="map-container">
         <div class="row">
             <div class="col-sm-6" th:each="map : ${sharedMaps}">
                 <a th:href="'/getMap/' + ${map.id}">
-                    <img th:src="${map.url}" alt="pic of map"/>
+                    <img class="map-pic" th:src="${map.url}" alt="pic of map"/>
                 </a>
             </div>
-
         </div>
     </div>
 </div>
