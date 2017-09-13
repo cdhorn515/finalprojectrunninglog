@@ -1,28 +1,31 @@
-Proposal:
 
-Build an app for runners so they can keep track of their running activity and share local running routes.
- 
- User stories:
-  
- As an admin I want to see the demographics of users who are signed up for my site to help determine features to be added.
- 
- As a visitor I want to see routes that have been made public by users so I can find places to run locally when visiting the area without having to sign up for an account.
- 
- As a visitor I would like to see a map of the area with local parks/running trails highlighted to give me some ideas for where to run.
- 
- As a user I want to have my password stored securely on the database so that others can't log into my account.
- 
- As a user I can create entries for each run I do so that I can keep track of my mileage and overall progress.
- 
- As a user I want the ability to make updates to the information I upload so that I can make any corrections to the data.
- 
- As a user I can mark routes as public so visitors to the website can find good places to run.
- 
- As a user I can select saved routes from a menu so I don't have to enter the same information each time.
- 
- As a user I would like to see the best time marked for each route to see how/if I'm improving.
- 
- As a user I would like the ability to remove data I'm tracking so that it is no longer displayed on my site.
+#Running Routes
+
+As a runner, I wanted to build an app to allow myself and other runners to keep track of our running activity and share local running routes, since it's always great to find new places to explore. Runners can log in to their own personal page, add data about their runs, and save their routes. Users can choose routes they have saved or create new routes for each run added. Routes are saved as a url link which when clicked on will display a Google map with the start and endpoint and the route outlined.
+
+Users can also delete or update information about their run (date, distance, and time). 
+
+Visitors to the site are able to see routes that have been made public by the users, and can click on the map to be taken to a page with the map displayed larger and zoomed in.
+
+An admin has the ability to see demographic information about the users who have signed up, and can view each users home page. Admins are not allowed to update or delete user run information, but can see the routes a user has created.
+
+Future features to add:
+
+*Allow user to edit route information
+
+*Link to local track club website and provide list of upcoming running events on home page
+
+*Add a "like" functionality to shared runs
+
+*Allow users to share routes with specific users
+
+*Group user runs together by route and highlight the fastest time
+
+This app was built in Java using Spring Boot, with a Postgres SQL database managed using JPA. Spring security was used for authenitication/authorization of the endpoints, and  BCrypt was used to encrypt passwords.  Netflix's Feign HTTP client was used to make requests to Google's Geocoding and Directions API, and information from the response received fromt those requests was used to create the url for Google's Static Map Api which when passed to the HTML, displays the map. 
+
+Thymeleaf was used to display dynamic information on the page, and Thymeleaf Security was also used to display information depending on the type of user. Bootstrap and CSS were used for styling the HTML.
+
+
  
  
  
