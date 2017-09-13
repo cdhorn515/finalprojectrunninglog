@@ -16,7 +16,7 @@ body {
     height: 100vh;
 }
 
-.home-heading {
+.home-heading, .route-heading {
     display: inline-block;
 }
 
@@ -81,6 +81,6 @@ footer {
     margin-top: 8px;
 }
 
-.select-route, .add-start {
+.select-route, .add-start, .add-end, .add-leg {
     margin-top: 5px;
 }
