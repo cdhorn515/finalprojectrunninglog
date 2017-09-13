@@ -34,9 +34,9 @@ public class MapController {
                               @PathVariable("runId") String runId, Principal principal) {
         try {
             User user = userRepo.findByUsername(principal.getName());
+            model.addAttribute("user", user);
             Iterable<Map> myMaps = mapRepo.findAllByUser(user);
             model.addAttribute("myMaps", myMaps);
-            model.addAttribute("user", user);
         } catch (Exception ex) {}
         model.addAttribute("runId", runId);
         return "routeStart";
@@ -70,6 +70,7 @@ public class MapController {
         newMap.setUser(user);
         mapRepo.save(newMap);
         long mapId = newMap.getId();
+
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
         return "redirect:/map/{runId}/routeEnd/" + mapId + "/" + address;
