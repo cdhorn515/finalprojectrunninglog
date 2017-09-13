@@ -51,7 +51,7 @@ footer {
     vertical-align: super;
 }
 
-.signup-form {
+.signup-form, .login-form, .run-form{
     width: 50%;
 }
 
@@ -67,6 +67,11 @@ footer {
     padding-left: 5px!important;
 }
 
-.signup {
+.signup, .login {
     float: right;
+}
+
+.update-run {
+    margin-top: 30px;
+    margin-left: 10px;
 }
