@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -20,8 +21,8 @@
             <th>Distance</th>
             <th>Time</th>
             <th>Map Link</th>
-            <th></th>
-            <th></th>
+            <th sec:authorize="hasRole('ROLE_USER')"></th>
+            <th sec:authorize="hasRole('ROLE_USER')"></th>
         </tr>
         <tr th:each="run : ${userRuns}">
             <td th:text="${#dates.format(run.date, 'MM-dd-yyyy')}"></td>
@@ -30,7 +31,7 @@
             <td>
                 <a th:href="'/displayMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
             </td>
-            <td>
+            <td sec:authorize="hasRole('ROLE_USER')">
                 <form action="/user/deleteRun" method="post">
                     <input type="hidden"
                            th:name="${_csrf.parameterName}"
@@ -39,7 +40,7 @@
                     <input type="submit" value="Delete"/>
                 </form>
             </td>
-            <td>
+            <td sec:authorize="hasRole('ROLE_USER')">
                 <form th:action="'/user/updateRun/' + ${run.id}" method="get">
                     <input type="hidden"
                            th:name="${_csrf.parameterName}"
