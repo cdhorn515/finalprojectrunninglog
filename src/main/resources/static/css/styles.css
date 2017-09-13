@@ -50,3 +50,23 @@ footer {
 .super {
     vertical-align: super;
 }
+
+.signup-form {
+    width: 50%;
+}
+
+.age-gender-row {
+    margin-top: 8px;
+}
+
+.age-label {
+    padding-left: 0px!important;
+}
+
+.gender-button {
+    padding-left: 5px!important;
+}
+
+.signup {
+    float: right;
+}
