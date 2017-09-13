@@ -76,3 +76,8 @@ footer {
     margin-left: 10px;
 }
 
+.time-label {
+    line-height: 0px;
+    margin-top: 8px;
+}
+
