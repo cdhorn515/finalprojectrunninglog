@@ -22,16 +22,21 @@ body {
 
 .map-container {
     width: 50%;
-
+    margin-bottom: 100px;
 }
 
-.map-pic {
+.map-pic-route {
+    margin-bottom: 100px;
+}
+
+.map-pic-park {
     margin: 10px;
     margin-bottom: 30px;
 }
 
 .park-map {
     float: right;
+    margin-bottom: 100px;
 }
 
 footer {
@@ -58,6 +63,10 @@ footer {
 
 .signup-form, .login-form, .run-form, .add-run-form {
     width: 50%;
+}
+
+.new-route, .signup-submit, .user-table, .admin-table {
+    margin-bottom: 100px;
 }
 
 .age-gender-row {
