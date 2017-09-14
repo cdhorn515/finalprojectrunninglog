@@ -11,7 +11,7 @@
 <div class="container">
 
 
-    <div class="col-md-5 col-sm-12 park-map">
+    <div class="col-md-5 col-sm-12 park-map-div">
         <h1 class="home-heading">Local Parks:</h1>
         <a>
             <img class="map-pic-park" th:src="${parksUrl}" alt="pic of map with park locations"/>
@@ -19,13 +19,13 @@
     </div>
 
     <div class="map-container">
-    <span><h1 class="home-heading">Local running routes&nbsp;</h1><h4
-            class="home-heading">(click on map to enlarge):</h4></span>
+    <h1 class="home-heading">Local running routes&nbsp;</h1><h4
+            class="home-heading">(click on map to enlarge):</h4>
 
         <div class="row">
             <div class="col-md-6 col-sm-12" th:each="map : ${sharedMaps}">
                 <a th:href="'/getMap/' + ${map.id}">
-                    <img class="map-pic" th:src="${map.url}" alt="pic of map"/>
+                    <img class="map-pic-route" th:src="${map.url}" alt="pic of map"/>
                 </a>
             </div>
         </div>

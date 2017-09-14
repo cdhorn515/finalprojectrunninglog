@@ -8,6 +8,7 @@ import com.cdhorn.Models.User;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -205,7 +206,7 @@ public class MapController {
 
     @RequestMapping("/displayMap/{mapId}")
     public String displayMap(@PathVariable("mapId") String mapId,
-                             Model model, Principal principal) {
+                             Model model, Principal principal, Device device) {
         String username = principal.getName();
         User user = userRepo.findByUsername(username);
         model.addAttribute("user", user);
@@ -213,7 +214,11 @@ public class MapController {
         Map myMap = mapRepo.findOne(longMapId);
         Run myRun = runRepo.findFirstByMap(myMap);
         String url = myMap.getUrl();
-        url = url.replace("250x250", "500x500");
+        if (device.isMobile()) {
+            url = url.replace("size=400x500", "size=350x450");
+        } else {
+            url = url.replace("size=250x250", "size=500x500");
+        }
         if (myRun.getDistance() > 7) {
            url = url.replace("zoom=12", "zoom=10");
         } else {

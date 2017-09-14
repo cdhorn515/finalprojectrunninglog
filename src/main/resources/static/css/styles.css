@@ -27,16 +27,21 @@ body {
 
 .map-pic-route {
     margin-bottom: 100px;
+    margin: 10px;
+    border: 1px solid gold;
+
 }
 
 .map-pic-park {
-    margin: 10px;
+    /*margin-left: 10px;*/
     margin-bottom: 30px;
+    border: 1px solid gold;
 }
 
-.park-map {
+.park-map-div {
     float: right;
     margin-bottom: 100px;
+    margin-left: 40px;
 }
 
 footer {
