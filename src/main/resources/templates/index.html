@@ -10,17 +10,29 @@
 <div th:include="navbar :: navbar"></div>
 <div class="container">
 
-    <span><h1 class="home-heading">Local running routes&nbsp;</h1><h4 class="home-heading">(click on map to enlarge):</h4></span>
+
+    <div class="col-md-5 col-sm-12 park-map">
+        <h1 class="home-heading">Local Parks:</h1>
+        <a>
+            <img class="map-pic" th:src="${parksUrl}" alt="pic of map with park locations"/>
+        </a>
+    </div>
 
     <div class="map-container">
+    <span><h1 class="home-heading">Local running routes&nbsp;</h1><h4
+            class="home-heading">(click on map to enlarge):</h4></span>
+
         <div class="row">
-            <div class="col-sm-6" th:each="map : ${sharedMaps}">
+            <div class="col-md-6 col-sm-12" th:each="map : ${sharedMaps}">
                 <a th:href="'/getMap/' + ${map.id}">
                     <img class="map-pic" th:src="${map.url}" alt="pic of map"/>
                 </a>
             </div>
+
         </div>
     </div>
+
+
 </div>
 <div th:include="navbar :: main-footer"></div>
 <span th:include="includes :: js"></span>

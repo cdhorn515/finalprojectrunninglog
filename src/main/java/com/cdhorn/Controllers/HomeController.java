@@ -1,5 +1,6 @@
 package com.cdhorn.Controllers;
 
+import com.cdhorn.Classes.ApiKey;
 import com.cdhorn.Interfaces.MapRepository;
 import com.cdhorn.Interfaces.UserRepository;
 import com.cdhorn.Models.Map;
@@ -26,6 +27,9 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index(Model model, Principal principal) {
+        ApiKey apiKey = new ApiKey();
+        String parksUrl = apiKey.getPARKS_URL();
+        model.addAttribute("parksUrl", parksUrl);
         try {
             User user = userRepo.findByUsername(principal.getName());
             model.addAttribute("user", user);

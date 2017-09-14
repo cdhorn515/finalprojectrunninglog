@@ -14,6 +14,7 @@ public class ApiKey {
     private String DIRECTIONS_API = bundle.getString("DIRECTIONS_KEY");
     private String STATIC_MAP_API = bundle.getString("STATIC_MAP_KEY");
     private String GEOCODING_API = bundle.getString("GEOCODING_KEY");
+    private String PARKS_URL = bundle.getString("PARKS_URL");
 
     public String getDIRECTIONS_API() {
         return DIRECTIONS_API;
@@ -27,5 +28,7 @@ public class ApiKey {
         return GEOCODING_API;
     }
 
-
+    public String getPARKS_URL() {
+        return PARKS_URL;
+    }
 }
