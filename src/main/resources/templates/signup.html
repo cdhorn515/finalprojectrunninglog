@@ -17,18 +17,18 @@
         <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
                 <label for="first">First name:</label>
-                <input class="form-control signup" type="text" th:field="*{first}" id="first" placeholder="First Name"/>
+                <input class="form-control signup" type="text" th:field="*{first}" id="first" placeholder="First Name" required="required"/>
             </div>
             <div class="form-group col-sm-6 col-xs-12">
                 <label for="last">Last name:</label>
-                <input class="form-control signup" type="text" th:field="*{last}" id="last" placeholder="Last Name"/>
+                <input class="form-control signup" type="text" th:field="*{last}" id="last" placeholder="Last Name" required="required"/>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
                 <label for="city">City:</label>
-                <input class="form-control signup" type="text" th:field="*{city}" id="city" placeholder="City"/>
+                <input class="form-control signup" type="text" th:field="*{city}" id="city" placeholder="City" required="required"/>
             </div>
             <div class="form-group col-sm-4 col-xs-12">
                 <label for="state">State:</label>
@@ -44,12 +44,12 @@
             <div class="form-group col-md-6 col-xs-12">
                 <label for="username">Username:</label>
                 <input class="form-control signup" type="text" th:field="*{username}" id="username"
-                       placeholder="Username"/>
+                       placeholder="Username" required="required"/>
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 <label for="password">Password:</label>
                 <input class="form-control signup" type="password" th:field="*{password}" id="password"
-                       placeholder="Password"/>
+                       placeholder="Password" required="required"/>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                 <div class="form-group form-inline">
                     <label for="age" class="col-md-4 col-xs-12 age-label">Age:</label>
                     <input type="number" min="0" name="age" th:field="*{age}" class=" col-md-5"
-                           id="age"/>
+                           id="age" required="required"/>
                 </div>
             </div>
 

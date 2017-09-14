@@ -54,22 +54,21 @@ public class LoginController {
                              @RequestParam("state") String state,
                              @RequestParam("first") String first,
                              @RequestParam("last") String last) {
-        //create new instance of user model
         User user = new User();
-        //set username on user instance
         user.setUsername(username);
-        user.setGender(gender);
+        if (gender == 'F' || gender == 'M') {
+            user.setGender(gender);
+        } else {
+            user.setGender('F');
+        }
         user.setAge(age);
         user.setCity(city);
         StateAbbreviations selectedState = StateAbbreviations.valueOf(state);
         user.setState(selectedState);
         user.setFirst(first);
         user.setLast(last);
-        //bcrypt encode pw
         String encryptedPassword = bCryptPasswordEncoder.encode(password);
-        //set encrypted pw on user instance
         user.setPassword(encryptedPassword);
-        //set user role on user instance
         Role userRole = roleRepo.findByName("ROLE_USER");
         user.setRole(userRole);
         user.setActive(true);
