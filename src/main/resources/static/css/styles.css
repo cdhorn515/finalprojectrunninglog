@@ -106,7 +106,7 @@ footer {
     margin-top: 5px;
 }
 
-@media (max-width: 420px) and (orientation: portrait) {
+@media (max-width: 991px) {
 
     .map-container {
         width: 100%;
@@ -129,4 +129,5 @@ footer {
     .home-click-enlarge-map {
         font-size: 18px;
     }
+
 }
