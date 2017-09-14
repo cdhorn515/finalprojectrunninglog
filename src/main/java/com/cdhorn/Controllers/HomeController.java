@@ -56,7 +56,7 @@ public class HomeController {
         Map myMap = mapRepo.findOne(myMapId);
         String url = myMap.getUrl();
         if (device.isMobile()) {
-            url = url.replace("size=400x500", "size=350x450");
+            url = url.replace("size=400x500", "size=335x475");
         } else {
 
             url = url.replace("size=250x250", "size=500x500");

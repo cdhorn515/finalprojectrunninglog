@@ -22,10 +22,10 @@
 
     <div class="map-container">
     <h1 class="home-heading local-routes-heading">Local running routes&nbsp;</h1><h4
-            class="home-heading">(click on map to enlarge):</h4>
+            class="home-heading home-click-enlarge-map">(click on map to enlarge):</h4>
 
         <div class="row">
-            <div class="col-md-6 col-sm-12" th:each="map : ${sharedMaps}">
+            <div class="col-md-6 col-sm-12 shared-map-pic" th:each="map : ${sharedMaps}">
                 <a th:href="'/getMap/' + ${map.id}">
                     <img class="map-pic-route" th:src="${map.url}" alt="pic of map"/>
                 </a>
