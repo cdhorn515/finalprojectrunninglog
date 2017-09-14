@@ -16,6 +16,11 @@ body {
     height: 100vh;
 }
 
+.local-routes-heading {
+    position: absolute;
+    z-index: 2;
+}
+
 .home-heading, .route-heading {
     display: inline-block;
 }
@@ -41,7 +46,7 @@ body {
 .park-map-div {
     float: right;
     margin-bottom: 100px;
-    margin-left: 40px;
+    /*margin-left: 40px;*/
 }
 
 footer {
