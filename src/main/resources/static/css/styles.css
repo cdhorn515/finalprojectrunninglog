@@ -130,4 +130,7 @@ footer {
         font-size: 18px;
     }
 
+  .signup-form, .login-form, .run-form, .add-run-form{
+        width: 100%;
+    }
 }

@@ -16,13 +16,13 @@
                th:name="${_csrf.parameterName}"
                th:value="${_csrf.token}"/>
         <div class="row">
-            <div class="form-group col-sm-5">
+            <div class="form-group col-md-5 col-xs-8">
                 <label class="control-label" for="date">Date:</label>
                 <input class="form-control" type="date" name="date" id="date" required="required"/>
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-5">
+            <div class="form-group col-md-5 col-xs-4">
                 <label class="control-label" for="distance">Distance:</label>
                 <input class="form-control col-sm-4" type="number" step="0.01" min="0" name="distance" id="distance" required="required"/>
             </div>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-6">
+            <div class="form-group col-md-6 col-xs-12">
                 <label for="hour">H:</label>
                 <input type="number" min="0" max="12" name="hour" id="hour" placeholder="00"/>
                 <label for="minute">M:</label>
@@ -42,7 +42,7 @@
                 <input type="number" min="0" max="59" name="second" id="second" placeholder="00"/>
             </div>
         </div>
-        <input class="col-sm-offset-3 col-sm-2" type="submit" value="Add"/>
+        <input class="col-sm-offset-3 col-sm-2 col-xs-offset-5 col-xs-2" type="submit" value="Add"/>
     </form>
 </div>
 
