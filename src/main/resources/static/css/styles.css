@@ -92,6 +92,10 @@ footer {
     float: right;
 }
 
+.pic-of-srt {
+    margin-bottom: 100px;
+}
+
 .update-run {
     margin-top: 30px;
     margin-left: 10px;
@@ -106,6 +110,11 @@ footer {
     margin-top: 5px;
 }
 
+.srt-pic-div {
+    position: absolute;
+    z-index: 2;
+}
+
 @media (max-width: 991px) {
 
     .map-container {
@@ -116,10 +125,9 @@ footer {
         margin-bottom: 0;
     }
 
-    .local-routes-heading {
+    .local-routes-heading, .srt-pic-div {
         position: relative;
         z-index: 0;
-        /*margin-top: 90px;*/
     }
 
     .shared-map-pic {
@@ -133,4 +141,13 @@ footer {
   .signup-form, .login-form, .run-form, .add-run-form{
         width: 100%;
     }
+
+  .pic-of-srt {
+      margin-bottom: 50px;
+      height: 340px;
+  }
+
+  .add-run-form {
+      margin-bottom: 150px;
+  }
 }

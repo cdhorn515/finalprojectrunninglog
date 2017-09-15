@@ -19,6 +19,10 @@
         <input type="hidden" th:value="${runId}"/>
         <input type="submit" value="No I'm finished"/>
     </form>
+
+    <div class="col-md-5 col-sm-10">
+        <img class="which-way-pic" src="/img/leg-pic.jpg" alt="wooden which way sign"/>
+    </div>
 <span><h2 class="route-heading">Yes, add below&nbsp;</h2><h4 class="route-heading">(use street address or point of interest):</h4></span>
     <form th:action="'/map/' + ${runId} + '/routeLeg/' + ${mapId}" method="post">
         <input type="hidden"

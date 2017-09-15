@@ -10,6 +10,10 @@
 <div th:include="navbar :: navbar"></div>
 <div class="container">
 
+    <div class="col-md-offset-5 col-md-5 col-xs-10 srt-pic-div">
+        <img class="pic-of-srt" src="/img/srt-pic.JPG" alt="pic of Swamp Rabbit Trail"/>
+    </div>
+
     <h1>Add run data:</h1>
     <form class="add-run-form" action="/user/addRun" method="post">
         <input type="hidden"
@@ -20,6 +24,7 @@
                 <label class="control-label" for="date">Date:</label>
                 <input class="form-control" type="date" name="date" id="date" required="required"/>
             </div>
+
         </div>
         <div class="row">
             <div class="form-group col-md-5 col-xs-4">
