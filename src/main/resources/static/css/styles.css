@@ -110,9 +110,18 @@ footer {
     margin-top: 5px;
 }
 
-.srt-pic-div {
+.srt-pic-div, .which-way-pic, .route-end-div {
     position: absolute;
     z-index: 2;
+}
+
+.which-way-pic {
+    width: 75%;
+}
+
+.turtle-pic {
+    height: 200px;
+    width: 200px;
 }
 
 @media (max-width: 991px) {
@@ -125,9 +134,13 @@ footer {
         margin-bottom: 0;
     }
 
-    .local-routes-heading, .srt-pic-div {
+    .local-routes-heading, .srt-pic-div, .which-way-pic, .route-end-div {
         position: relative;
         z-index: 0;
+    }
+
+    .which-way-pic, .start-pic {
+        width: 100%;
     }
 
     .shared-map-pic {
@@ -147,7 +160,11 @@ footer {
       height: 340px;
   }
 
-  .add-run-form {
+  .add-run-form, .add-leg-form {
       margin-bottom: 150px;
+  }
+
+  .leg-pic-div {
+      margin-top: 10px;
   }
 }

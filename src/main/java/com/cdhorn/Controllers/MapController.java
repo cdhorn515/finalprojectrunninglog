@@ -74,10 +74,10 @@ public class MapController {
 
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
-        return "redirect:/map/{runId}/routeEnd/" + mapId + "/" + address;
+        return "redirect:/map/{runId}/routeEnd/" + mapId;
     }
 
-    @RequestMapping("/map/{runId}/routeEnd/{mapId}/{address}")
+    @RequestMapping("/map/{runId}/routeEnd/{mapId}")
     public String routeEnd(@PathVariable("runId") String runId,
                            @PathVariable("mapId") String mapId,
                            Model model, Principal principal) {
