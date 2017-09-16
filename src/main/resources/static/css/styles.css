@@ -110,7 +110,7 @@ footer {
     margin-top: 5px;
 }
 
-.srt-pic-div, .which-way-pic, .route-end-div, .start-pic {
+.srt-pic-div, .which-way-pic, .route-end-div, .start-pic, .signup-pic-div, .login-pic-div {
     position: absolute;
     z-index: 2;
 }
@@ -119,11 +119,11 @@ footer {
     width: 75%;
 }
 
-.turtle-pic {
+.turtle-pic, .update-pic, .signup-pic {
     width: 100%;
 }
 
-.route-end-div {
+.route-end-div, .signup-pic-div, .login-pic-div {
     margin-top: 30px;
     margin-bottom: 20px;
 }
@@ -138,12 +138,12 @@ footer {
         margin-bottom: 0;
     }
 
-    .local-routes-heading, .srt-pic-div, .which-way-pic, .route-end-div, .start-pic  {
+    .local-routes-heading, .srt-pic-div, .which-way-pic, .route-end-div, .start-pic, .signup-pic-div, .login-pic-div  {
         position: relative;
         z-index: 0;
     }
 
-    .which-way-pic, .start-pic {
+    .which-way-pic, .start-pic, .login-pic {
         width: 100%;
     }
 
@@ -168,11 +168,11 @@ footer {
       margin-bottom: 150px;
   }
 
-  .leg-pic-div {
+  .leg-pic-div, .edit-pic-div, .signup-pic-div, .login-pic-div {
       margin-top: 10px;
   }
 
-  .start-pic {
+  .start-pic, .signup-pic-div {
       margin-bottom: 15px;
   }
 }
