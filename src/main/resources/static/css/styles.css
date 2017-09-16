@@ -92,10 +92,6 @@ footer {
     float: right;
 }
 
-.pic-of-srt {
-    margin-bottom: 100px;
-}
-
 .update-run {
     margin-top: 30px;
     margin-left: 10px;
@@ -119,11 +115,15 @@ footer {
     width: 75%;
 }
 
-.turtle-pic, .update-pic, .signup-pic {
+.turtle-pic, .update-pic, .signup-pic, .pic-of-srt {
     width: 100%;
 }
 
-.route-end-div, .signup-pic-div, .login-pic-div {
+.pic-of-srt {
+    height: 70vh;
+}
+
+.route-end-div, .signup-pic-div, .login-pic-div, .srt-pic-div {
     margin-top: 30px;
     margin-bottom: 20px;
 }
@@ -160,19 +160,18 @@ footer {
     }
 
   .pic-of-srt {
-      margin-bottom: 50px;
-      height: 340px;
+      height: 220px;
   }
 
   .add-run-form, .add-leg-form {
       margin-bottom: 150px;
   }
 
-  .leg-pic-div, .edit-pic-div, .signup-pic-div, .login-pic-div {
+  .leg-pic-div, .edit-pic-div, .signup-pic-div, .login-pic-div, .srt-pic-div {
       margin-top: 10px;
   }
 
-  .start-pic, .signup-pic-div {
+  .start-pic, .signup-pic-div, .srt-pic-div {
       margin-bottom: 15px;
   }
 }
