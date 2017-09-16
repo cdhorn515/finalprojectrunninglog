@@ -10,13 +10,13 @@
 <div th:include="navbar :: navbar"></div>
 <div class="container">
 
-
-
-        <span><h2 class="route-heading">Enter your route ending point&nbsp;</h2><h4 class="route-heading">(use street address or point of interest):</h4></span>
-
-    <div class="route-end-div col-md-offset-7 col-md-5 col-xs-10">
+    <div class="route-end-div col-md-offset-6 col-md-3 col-xs-12">
         <img class="turtle-pic" src="/img/turtle-finish-pic.png" alt="pic of turtle crossing finish line"/>
     </div>
+
+        <h2>Enter your route ending point&nbsp;</h2><h4>(use street address or point of interest):</h4>
+
+
 
     <form class="add-run-form" th:action="'/map/' + ${runId} + '/routeEnd/' + ${mapId}" method="post">
 
