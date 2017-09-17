@@ -21,8 +21,6 @@ public class HomeController {
 
     @Autowired
     MapRepository mapRepo;
-//    @Autowired
-//    RunRepository runRepo;
     @Autowired
     UserRepository userRepo;
 
