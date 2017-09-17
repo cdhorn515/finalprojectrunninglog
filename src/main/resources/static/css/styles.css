@@ -177,4 +177,20 @@ footer {
   .start-pic, .signup-pic-div, .srt-pic-div {
       margin-bottom: 15px;
   }
+
+  .footer {
+      height: 90px;
+  }
+
+  .icons {
+      margin-right: 0;
+      margin-top: -20px;
+  }
+
+  .footer-icons {
+      margin-right: 15px;
+      text-align: center;
+  }
+
+
 }
