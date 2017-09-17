@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -16,24 +18,27 @@ body {
     height: 100vh;
 }
 
+.home-banner {
+    text-align: center;
+}
+
 .home-heading, .route-heading {
     display: inline-block;
 }
 
 .map-container {
-    width: 50%;
     margin-bottom: 100px;
 }
 
 .map-pic-route {
     margin: 10px;
     width: 100%;
-    margin-bottom: 150px;
+    margin-bottom: 15px;
     border: 1px solid gold;
 }
 
 .map-pic-park {
-    margin-bottom: 30px;
+    margin-bottom: 150px;
     margin-top: 80px;
     border: 1px solid gold;
     width: 100%;
@@ -103,7 +108,7 @@ footer {
     margin-top: 5px;
 }
 
-.local-routes-heading, .srt-pic-div, .which-way-pic, .route-end-div, .start-pic, .signup-pic-div, .login-pic-div, .park-map-div {
+.srt-pic-div, .which-way-pic, .route-end-div, .start-pic, .signup-pic-div, .login-pic-div, .park-map-div, .park-map-heading {
     position: absolute;
     z-index: 2;
 }
@@ -125,10 +130,17 @@ footer {
     margin-bottom: 20px;
 }
 
+/*--------------------MOBILE------------------------*/
+
 @media (max-width: 991px) {
 
+
+    .home-banner-img {
+        max-width: 100vw;
+    }
+
     .map-container {
-        width: 100%;
+        margin-bottom: 15px;
     }
 
     .park-map-div {
@@ -138,12 +150,16 @@ footer {
     .map-pic-route {
         margin: 0;
         margin-top: 10px;
-        margin-bottom: 250px;
+        margin-bottom: 15px;
     }
 
-    .local-routes-heading, .srt-pic-div, .which-way-pic, .route-end-div, .start-pic, .signup-pic-div, .login-pic-div, .park-map-div  {
+    .local-routes-heading, .srt-pic-div, .which-way-pic, .route-end-div, .start-pic, .signup-pic-div, .login-pic-div, .park-map-div, .park-map-heading  {
         position: relative;
         z-index: 0;
+    }
+
+    .home-heading {
+        font-size: 32px;
     }
 
     .which-way-pic, .start-pic, .login-pic {
@@ -158,39 +174,53 @@ footer {
         font-size: 18px;
     }
 
-  .signup-form, .login-form, .run-form, .add-run-form{
+    .add-map-h1 {
+        font-size: 26px;
+    }
+
+    .add-map-h2, .add-map-h3,.route-end-h2 {
+        font-size: 24px;
+    }
+
+    .legs-h1 {
+        font-size: 32px;
+    }
+
+    .admin-h3 {
+        font-size: 17px;
+    }
+
+    .signup-form, .login-form, .run-form, .add-run-form{
         width: 100%;
     }
 
-  .pic-of-srt {
-      height: 220px;
-  }
+    .pic-of-srt {
+        height: 220px;
+    }
 
-  .add-run-form, .add-leg-form, .login-form {
-      margin-bottom: 250px;
-  }
+    .add-run-form, .add-leg-form, .login-form, .user-table {
+        margin-bottom: 250px;
+    }
 
-  .leg-pic-div, .edit-pic-div, .signup-pic-div, .login-pic-div, .srt-pic-div, .map-pic-park {
-      margin-top: 10px;
-  }
+    .leg-pic-div, .edit-pic-div, .signup-pic-div, .login-pic-div, .srt-pic-div, .map-pic-park {
+        margin-top: 10px;
+    }
 
-  .start-pic, .signup-pic-div, .srt-pic-div {
-      margin-bottom: 15px;
-  }
+    .start-pic, .signup-pic-div, .srt-pic-div {
+        margin-bottom: 15px;
+    }
 
-  .footer {
-      height: 90px;
-  }
+    .footer {
+        height: 90px;
+    }
 
-  .icons {
-      margin-right: 0;
-      margin-top: -20px;
-  }
+    .icons {
+        margin-right: 0;
+        margin-top: -20px;
+    }
 
-  .footer-icons {
-      margin-right: 15px;
-      text-align: center;
-  }
-
-
+    .footer-icons {
+        margin-right: 15px;
+        text-align: center;
+    }
 }

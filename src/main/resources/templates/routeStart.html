@@ -9,9 +9,9 @@
 <body>
 <div th:include="navbar :: navbar"></div>
 <div class="container">
-    <h1>Add a map of your run route:</h1>
+    <h1 class="add-map-h1">Add a map of your run route:</h1>
 
-    <h2>You can choose from one of your previously created routes:</h2>
+    <h2 class="add-map-h2">You can choose from one of your previously created routes:</h2>
     <form th:action="'/map/' + ${runId} + '/routeSelect'" method="post">
 
         <div class="form-group">
@@ -35,16 +35,16 @@
         <img class="start-pic" src="/img/start-pic.jpg" alt="pic of shoes at start line"/>
     </div>
 
-    <h2>Or create a new route:</h2>
+    <h2 class="add-map-h2">Or create a new route:</h2>
     <form class="new-route" th:action="'/map/' + ${runId} + '/routeStart'" method="post">
-        <h3>Give your route a name:</h3>
+        <h3 class="add-map-h3">Give your route a name:</h3>
         <div class="row">
             <div class="col-md-6 col-xs-10">
                 <input class="form-control" type="text" name="route_name" id="route_name" required="required"/>
             </div>
         </div>
 
-        <h3>Would you like your route to be viewable by others?</h3>
+        <h3 class="add-map-h3">Would you like your route to be viewable by others?</h3>
         <div class="row">
 
             <div class="col-sm-6">
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <h2>Enter your route starting point</h2>
+        <h2 class="add-map-h2">Enter your route starting point</h2>
         <h4>(use street address or point of interest):</h4>
         <input type="hidden"
                th:name="${_csrf.parameterName}"

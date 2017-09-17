@@ -10,7 +10,7 @@
 <div th:include="navbar :: navbar"></div>
 <div class="container">
 
-    <h1>Do you want to add additional route legs?</h1>
+    <h1 class="legs-h1">Do you want to add additional route legs?</h1>
     <form th:action="'/map/' + ${runId} + '/createMap/' + ${mapId}">
         <input type="hidden"
                th:name="${_csrf.parameterName}"
@@ -23,7 +23,7 @@
     <div class="leg-pic-div col-md-offset-7 col-md-5 col-xs-10">
         <img class="which-way-pic" src="/img/this-that-way-pic.jpg" alt="wooden which way sign"/>
     </div>
-<span><h2 class="route-heading">Yes, add below&nbsp;</h2><h4 class="route-heading">(use street address or point of interest):</h4></span>
+<span><h2 class="route-heading">Yes, add below</h2><h4 class="route-heading">(use street address or point of interest):</h4></span>
     <form class="add-leg-form" th:action="'/map/' + ${runId} + '/routeLeg/' + ${mapId}" method="post">
         <input type="hidden"
                th:name="${_csrf.parameterName}"
