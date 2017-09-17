@@ -38,14 +38,18 @@ body {
 }
 
 .map-pic-park {
-    margin-bottom: 150px;
+    margin-bottom: 20px;
     margin-top: 80px;
     border: 1px solid gold;
     width: 100%;
 }
 
 .park-map-div {
-    margin-bottom: 100px;
+    margin-bottom: 150px;
+}
+
+.map-link-table {
+    text-align: center;
 }
 
 footer {
@@ -141,10 +145,6 @@ footer {
 
     .map-container {
         margin-bottom: 15px;
-    }
-
-    .park-map-div {
-        margin-bottom: 0;
     }
 
     .map-pic-route {

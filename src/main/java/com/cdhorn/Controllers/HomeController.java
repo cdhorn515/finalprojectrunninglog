@@ -28,10 +28,22 @@ public class HomeController {
     public String index(Model model, Principal principal, Device device) {
         ApiKey apiKey = new ApiKey();
         String parksUrl = apiKey.getPARKS_URL();
+        String cleveland = apiKey.getCLEVELAND_URL();
+        String falls = apiKey.getFALLS_URL();
+        String paris = apiKey.getPARIS_URL();
+        String conestee = apiKey.getCONESTEE_URL();
         if (device.isMobile()) {
             parksUrl = parksUrl.replace("size=400x500", "size=350x450");
+            cleveland = cleveland.replace("size=500x500", "size=350x350");
+            falls = falls.replace("size=500x500", "size=350x350");
+            paris = paris.replace("size=500x500", "size=350x350");
+            conestee = conestee.replace("size=500x500", "size=350x350");
         }
         model.addAttribute("parksUrl", parksUrl);
+        model.addAttribute("cleveland", cleveland);
+        model.addAttribute("falls", falls);
+        model.addAttribute("paris", paris);
+        model.addAttribute("conestee", conestee);
         try {
             User user = userRepo.findByUsername(principal.getName());
             model.addAttribute("user", user);
