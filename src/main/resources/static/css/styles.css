@@ -16,7 +16,6 @@ body {
     height: 100vh;
 }
 
-
 .home-heading, .route-heading {
     display: inline-block;
 }
@@ -28,7 +27,7 @@ body {
 
 .map-pic-route {
     margin: 10px;
-
+    width: 100%;
     margin-bottom: 150px;
     border: 1px solid gold;
 }
@@ -134,6 +133,12 @@ footer {
 
     .park-map-div {
         margin-bottom: 0;
+    }
+
+    .map-pic-route {
+        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 250px;
     }
 
     .local-routes-heading, .srt-pic-div, .which-way-pic, .route-end-div, .start-pic, .signup-pic-div, .login-pic-div, .park-map-div  {
