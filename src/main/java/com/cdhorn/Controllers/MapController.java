@@ -226,6 +226,9 @@ public class MapController {
                 url = url.replace("zoom=12", "zoom=14");
             }
         }
+
+        String urlEndpoint = "user";
+        model.addAttribute("urlEndpoint", urlEndpoint);
         model.addAttribute("url", url);
         return "map";
     }

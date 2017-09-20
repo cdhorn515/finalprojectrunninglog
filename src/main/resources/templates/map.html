@@ -14,17 +14,18 @@
 
     <h1>Map of run route:</h1>
     <div class="map-pic-route-div col-md-6 col-xs-12">
-    <div>
 
-        <img class="map-pic-route" th:src="${url}" alt="pic of map"/>
-
-    </div>
-        <div class="col-xs-offset-11 back-button">
-            <form th:if="${urlEndpoint == null}" th:action="'/'" th:method="get">
-                th:if="${urlEndpoint != null}" th:action="'/user'" th:method="get"
+        <div>
+            <img class="map-pic-route" th:src="${url}" alt="pic of map"/>
+        </div>
+        <div class="col-xs-offset-11 back-button" th:if="${urlEndpoint != null}">
+            <form th:action="'/user'" th:method="get">
                 <input type="submit" value="Back"/>
             </form>
-            <form >
+        </div>
+
+        <div class="col-xs-offset-11 back-button" th:if="${urlEndpoint == null}">
+            <form th:action="'/'" th:method="get">
                 <input type="submit" value="Back"/>
             </form>
         </div>
