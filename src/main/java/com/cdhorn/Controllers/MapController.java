@@ -229,6 +229,7 @@ public class MapController {
         String urlEndpoint = "user";
         model.addAttribute("urlEndpoint", urlEndpoint);
         model.addAttribute("url", url);
+        model.addAttribute("myMap", myMap);
         return "map";
     }
 

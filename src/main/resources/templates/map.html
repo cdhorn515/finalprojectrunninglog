@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -18,17 +19,25 @@
         <div>
             <img class="map-pic-route" th:src="${url}" alt="pic of map"/>
         </div>
-        <div class="col-xs-offset-11 back-button" th:if="${urlEndpoint != null}">
-            <form th:action="'/user'" th:method="get">
+
+        <div class="col-xs-offset-11 back-button" sec:authorize="hasRole('ROLE_ADMIN')" th:if="${urlEndpoint != null}">
+            <form th:action="'/admin/user/' + ${myMap.user.id}" th:method="get">
                 <input type="submit" value="Back"/>
             </form>
         </div>
 
+        <div class="col-xs-offset-11 back-button" sec:authorize="hasRole('ROLE_USER')" th:if="${urlEndpoint != null}">
+            <form th:action="'/user'" th:method="get">
+                <input type="submit" value="Back"/>
+            </form>
+
+        </div>
         <div class="col-xs-offset-11 back-button" th:if="${urlEndpoint == null}">
             <form th:action="'/'" th:method="get">
                 <input type="submit" value="Back"/>
             </form>
         </div>
+
     </div>
 
 </div>
