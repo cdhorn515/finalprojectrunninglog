@@ -30,8 +30,8 @@
             <td th:text="${run.distance}"></td>
             <td th:text="${run.time}"></td>
             <td>
-                <a th:if="${run.map ==null}" href="https://maps.googleapis.com/maps/api/staticmap?zoom=11&amp;size=500x500&amp;markers=size:mid%7Ccolor:red%7C34.85261759999999,-82.3940104">no route provided</a>
-                <a th:if="${run.map !=null}"  th:href="'/displayMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
+                <a class="map-link" th:if="${run.map ==null}" href="https://maps.googleapis.com/maps/api/staticmap?zoom=11&amp;size=500x500&amp;markers=size:mid%7Ccolor:red%7C34.85261759999999,-82.3940104">no route provided</a>
+                <a class="map-link" th:if="${run.map !=null}"  th:href="'/displayMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
             </td>
             <td sec:authorize="hasRole('ROLE_USER')">
                 <form action="/user/deleteRun" method="post">
@@ -39,7 +39,7 @@
                            th:name="${_csrf.parameterName}"
                            th:value="${_csrf.token}"/>
                     <input type="hidden" name="id" th:value="${run.id}"/>
-                    <input type="submit" value="Delete"/>
+                    <input class="btn btn-danger" type="submit" value="Delete"/>
                 </form>
             </td>
             <td sec:authorize="hasRole('ROLE_USER')">
@@ -48,7 +48,7 @@
                            th:name="${_csrf.parameterName}"
                            th:value="${_csrf.token}"/>
                     <input type="hidden" name="id" th:value="${run.id}"/>
-                    <input type="submit" value="Update"/>
+                    <input class="btn btn-warning" type="submit" value="Update"/>
                 </form>
             </td>
         </tr>

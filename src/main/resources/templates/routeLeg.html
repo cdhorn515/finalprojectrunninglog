@@ -17,7 +17,7 @@
                th:value="${_csrf.token}"/>
         <input type="hidden" th:value="${mapId}"/>
         <input type="hidden" th:value="${runId}"/>
-        <input type="submit" value="No I'm finished"/>
+        <input class="btn btn-default" type="submit" value="No I'm finished"/>
     </form>
 
     <div class="leg-pic-div col-md-offset-7 col-md-5 col-xs-10">
@@ -36,7 +36,7 @@
         <input type="hidden" th:value="${runId}"/>
         </div>
 </div>
-        <input class="add-leg" type="submit" value="Add leg"/>
+        <input class="add-leg btn btn-default" type="submit" value="Add leg"/>
     </form>
 
     <div th:include="navbar :: main-footer"></div>
