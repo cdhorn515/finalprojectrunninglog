@@ -54,6 +54,11 @@
         </tr>
     </table>
     </div>
+    <div class="col-xs-offset-11 back-button" sec:authorize="hasRole('ROLE_ADMIN')">
+    <form action="/admin" method="get">
+        <input class="btn btn-default" type="submit" value="Back"/>
+    </form>
+    </div>
 
 </div>
 <div th:include="navbar :: main-footer"></div>
