@@ -25,8 +25,10 @@ public class UserController {
     public String userHome(Model model, Principal principal) {
         User user = userRepo.findByUsername(principal.getName());
         Iterable<Run> userRuns = runRepo.findAllByUser(user);
+        String urlEndpoint = "user";
         model.addAttribute("userRuns", userRuns);
         model.addAttribute("user", user);
+        model.addAttribute("urlEndpoint", urlEndpoint);
         return "user";
     }
 

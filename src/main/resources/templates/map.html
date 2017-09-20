@@ -19,6 +19,15 @@
         <img class="map-pic-route" th:src="${url}" alt="pic of map"/>
 
     </div>
+        <div class="col-xs-offset-11 back-button">
+            <form th:if="${urlEndpoint == null}" th:action="'/'" th:method="get">
+                th:if="${urlEndpoint != null}" th:action="'/user'" th:method="get"
+                <input type="submit" value="Back"/>
+            </form>
+            <form >
+                <input type="submit" value="Back"/>
+            </form>
+        </div>
     </div>
 
 </div>

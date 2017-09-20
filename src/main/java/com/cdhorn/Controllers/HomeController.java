@@ -52,6 +52,9 @@ public class HomeController {
             Iterable<Map> sharedMaps = mapRepo.findAllBySharedIsTrue();
             model.addAttribute("sharedMaps", sharedMaps);
         } catch (Exception e) {}
+//        String urlEndpoint = "";
+//        model.addAttribute("urlEndpoint", urlEndpoint);
+
         return "index";
     }
 
