@@ -1,23 +1,17 @@
 package com.cdhorn.Classes;
 
 
+import com.cdhorn.Interfaces.GeocodingInterface;
 import com.cdhorn.Interfaces.MapRepository;
 import com.cdhorn.Interfaces.RunRepository;
 import com.cdhorn.Models.Map;
 import com.cdhorn.Models.Run;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import feign.Feign;
+import feign.gson.GsonDecoder;
 
 public class HelperFx {
-
-    @Autowired
-    MapRepository mapRepo;
-    @Autowired
-    RunRepository runRepo;
-
-    public Object getMap(@PathVariable("runId") String runId,
-                                    @RequestParam("map_id") String mapId) {
+    
+    public Map getMap(MapRepository mapRepo, RunRepository runRepo, String runId, String mapId) {
         long myMapId = Long.parseLong(mapId);
         Map myMap = mapRepo.findOne(myMapId);
         long myRunId = Long.parseLong(runId);
@@ -25,12 +19,32 @@ public class HelperFx {
         myRun.setMap(myMap);
         runRepo.save(myRun);
         return myMap;
-
     }
 
-    public void getRun(@PathVariable("runId") String runId,
-                       @RequestParam("mapId") String mapId) {
-
-
+    public Map updateMap(MapRepository mapRepo, String mapId) {
+        long intMapId = Integer.valueOf(mapId);
+        Map updateMap = mapRepo.findOne(intMapId);
+        return updateMap;
     }
+
+    public String getPosition(String address) {
+
+        String addressNoSpaces = address.replace(" ", "+");
+        ApiKey apiKey = new ApiKey();
+        GeocodingInterface geocodingInterface = Feign.builder()
+                .decoder(new GsonDecoder())
+                .target(GeocodingInterface.class, "https://maps.googleapis.com");
+        GeocodingResponse response = geocodingInterface.geocodingResponse(addressNoSpaces + "+greenville+sc",
+                apiKey.getGEOCODING_API());
+        double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
+        double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
+        String position = lat + "," + lng;
+        return position;
+    }
+
+//    public Run getRun(@PathVariable("runId") String runId,
+//                       @RequestParam("mapId") String mapId) {
+//
+//        return
+//    }
 }

@@ -49,18 +49,12 @@ public class MapController {
                               @RequestParam("route_name") String route_name,
                               @RequestParam("shared") String shared,
                               Model model) {
-        String addressNoSpaces = address.replace(" ", "+");
-        ApiKey apiKey = new ApiKey();
-        GeocodingInterface geocodingInterface = Feign.builder()
-                .decoder(new GsonDecoder())
-                .target(GeocodingInterface.class, "https://maps.googleapis.com");
-        GeocodingResponse response = geocodingInterface.geocodingResponse(addressNoSpaces + "+greenville+sc",
-                apiKey.getGEOCODING_API());
-        double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
-        double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
-        String startPosition = lat + "," + lng;
+
+        HelperFx helperFx = new HelperFx();
+        String position = helperFx.getPosition(address);
+
         Map newMap = new Map();
-        newMap.setStartPosition(startPosition);
+        newMap.setStartPosition(position);
         newMap.setRouteName(route_name);
         if (shared.equals("Y")) {
             newMap.setShared(true);
@@ -85,31 +79,21 @@ public class MapController {
         model.addAttribute("user", user);
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
-
         return "routeEnd";
     }
 
     @RequestMapping(value = "/map/{runId}/routeEnd/{mapId}", method = RequestMethod.POST)
     public String routeEnd(@PathVariable("runId") String runId,
                            @PathVariable("mapId") String mapId,
-                           @RequestParam("endaddress") String endaddress,
+                           @RequestParam("endaddress") String address,
                            Model model) {
 
-        String addressNoSpaces = endaddress.replace(" ", "+");
+        HelperFx helperFx = new HelperFx();
+        String position = helperFx.getPosition(address);
 
-        ApiKey apiKey = new ApiKey();
-        GeocodingInterface geocodingInterface = Feign.builder()
-                .decoder(new GsonDecoder())
-                .target(GeocodingInterface.class, "https://maps.googleapis.com");
-        GeocodingResponse response = geocodingInterface.geocodingResponse(addressNoSpaces + "+greenville+sc", apiKey.getGEOCODING_API());
-        double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
-        double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
-        String endPosition = lat + "," + lng;
+        Map updateMap = helperFx.updateMap(mapRepo, mapId);
 
-        long intMapId = Integer.valueOf(mapId);
-        Map updateMap = mapRepo.findOne(intMapId);
-
-        updateMap.setEndPosition(endPosition);
+        updateMap.setEndPosition(position);
         mapRepo.save(updateMap);
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
@@ -130,43 +114,35 @@ public class MapController {
 
     @RequestMapping(value = "/map/{runId}/routeLeg/{mapId}", method = RequestMethod.POST)
     public String addRouteLeg(@PathVariable("runId") String runId,
-                              @RequestParam("leg") String leg,
+                              @RequestParam("leg") String address,
                               @PathVariable("mapId") String mapId,
                               Model model) {
 
-        String addressNoSpaces = leg.replace(" ", "+");
-        ApiKey apiKey = new ApiKey();
-        GeocodingInterface geocodingInterface = Feign.builder()
-                .decoder(new GsonDecoder())
-                .target(GeocodingInterface.class, "https://maps.googleapis.com");
-        GeocodingResponse response = geocodingInterface.geocodingResponse(addressNoSpaces + "+greenville+sc", apiKey.getGEOCODING_API());
-        double lat = response.getResults().get(0).getGeometry().getLocation().getLat();
-        double lng = response.getResults().get(0).getGeometry().getLocation().getLng();
-        String legs = lat + "," + lng;
-        long intMapId = Integer.valueOf(mapId);
-        Map updateMap = mapRepo.findOne(intMapId);
+        HelperFx helperFx = new HelperFx();
+        String position = helperFx.getPosition(address);
+
+        Map updateMap = helperFx.updateMap(mapRepo, mapId);
+
         String currentLegs = updateMap.getLegs();
         if (currentLegs == null) {
-            updateMap.setLegs(legs);
+            updateMap.setLegs(position);
         } else {
-            String updatedLegsString = currentLegs + "|" + legs;
+            String updatedLegsString = currentLegs + "|" + position;
             updateMap.setLegs(updatedLegsString);
         }
         mapRepo.save(updateMap);
         model.addAttribute("mapId", mapId);
         model.addAttribute("runId", runId);
-        return "redirect:/map/{runId}/routeLeg/" + intMapId;
+        return "redirect:/map/{runId}/routeLeg/{mapId}";
     }
 
     @RequestMapping(value = "/map/{runId}/createMap/{mapId}")
     public String testMap(@PathVariable("runId") String runId,
                           @PathVariable("mapId") String mapId) {
-        long myMapId = Long.parseLong(mapId);
-        Map myMap = mapRepo.findOne(myMapId);
-        long myRunId = Long.parseLong(runId);
-        Run myRun = runRepo.findOne(myRunId);
-        myRun.setMap(myMap);
-        runRepo.save(myRun);
+
+        HelperFx helperFx = new HelperFx();
+        Map myMap = helperFx.getMap(mapRepo, runRepo, runId, mapId);
+
         String startPosition = myMap.getStartPosition();
         String endPosition = myMap.getEndPosition();
         String waypoints = myMap.getLegs();
@@ -195,12 +171,8 @@ public class MapController {
     @RequestMapping(value = "/map/{runId}/routeSelect", method = RequestMethod.POST)
     public String selectPreviousRoute(@PathVariable("runId") String runId,
                                       @RequestParam("map_id") String mapId) {
-        long myMapId = Long.parseLong(mapId);
-        Map myMap = mapRepo.findOne(myMapId);
-        long myRunId = Long.parseLong(runId);
-        Run myRun = runRepo.findOne(myRunId);
-        myRun.setMap(myMap);
-        runRepo.save(myRun);
+        HelperFx helperFx = new HelperFx();
+        helperFx.getMap(mapRepo, runRepo, runId, mapId);
         return "redirect:/user";
     }
 
