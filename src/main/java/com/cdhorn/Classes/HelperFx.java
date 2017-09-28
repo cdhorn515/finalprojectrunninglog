@@ -9,8 +9,10 @@ import com.cdhorn.Models.Run;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 
+import java.sql.Time;
+
 public class HelperFx {
-    
+
     public Map getMap(MapRepository mapRepo, RunRepository runRepo, String runId, String mapId) {
         long myMapId = Long.parseLong(mapId);
         Map myMap = mapRepo.findOne(myMapId);
@@ -42,8 +44,15 @@ public class HelperFx {
         return position;
     }
 
-//    public Run getRun(@PathVariable("runId") String runId,
-//                       @RequestParam("mapId") String mapId) {
+    public void setRunData(String time, float distance, Run userRun, RunRepository runRepo) {
+        userRun.setDistance(distance);
+        Time runTime = Time.valueOf(time);
+        userRun.setTime(runTime);
+        runRepo.save(userRun);
+    }
+
+
+//    public Run getRun(String runId, String mapId) {
 //
 //        return
 //    }

@@ -1,5 +1,6 @@
 package com.cdhorn.Controllers;
 
+import com.cdhorn.Classes.HelperFx;
 import com.cdhorn.Interfaces.RunRepository;
 import com.cdhorn.Interfaces.UserRepository;
 import com.cdhorn.Models.Run;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.sql.Date;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 
 @Controller
@@ -53,12 +53,10 @@ public class RunController {
             second = "00";
         }
         String time = hour + ":" + minute + ":" + second;
-        userRun.setDate(date);
-        userRun.setDistance(distance);
-        Time runTime = Time.valueOf(time);
-        userRun.setTime(runTime);
         userRun.setUser(user);
-        runRepo.save(userRun);
+        userRun.setDate(date);
+        HelperFx helperFx = new HelperFx();
+        helperFx.setRunData(time, distance, userRun, runRepo);
         long runId = userRun.getId();
         model.addAttribute("runId", runId);
         return "redirect:/map/"+ runId + "/routeStart";
@@ -70,7 +68,6 @@ public class RunController {
         Run run = runRepo.findOne(id);
         User user = userRepo.findByUsername(principal.getName());
         model.addAttribute("user", user);
-
         model.addAttribute("run", run);
         return "editRun";
     }
@@ -79,16 +76,12 @@ public class RunController {
     public String updateRun(@PathVariable("id") long id,
                             @RequestParam("date") String date,
                             @RequestParam("distance") float distance,
-                            @RequestParam("time") String time,
-                            Model model) throws Exception {
+                            @RequestParam("time") String time) throws Exception {
         Run userRun = runRepo.findOne(id);
         java.util.Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        Time runTime = Time.valueOf(time);
-        userRun.setDistance(distance);
         userRun.setDate(runDate);
-        userRun.setTime(runTime);
-        runRepo.save(userRun);
-        model.addAttribute(userRun);
+        HelperFx helperFx = new HelperFx();
+        helperFx.setRunData(time, distance, userRun, runRepo);
         return "redirect:/user";
     }
 
