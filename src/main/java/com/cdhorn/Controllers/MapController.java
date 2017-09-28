@@ -182,15 +182,12 @@ public class MapController {
         String username = principal.getName();
         User user = userRepo.findByUsername(username);
         model.addAttribute("user", user);
-        long longMapId = Long.parseLong(mapId);
-        Map myMap = mapRepo.findOne(longMapId);
+
+        HelperFx helperFx = new HelperFx();
+        Map myMap = helperFx.findMap(mapRepo, mapId);
+
+        String url = helperFx.getUrl(myMap, device);
         Run myRun = runRepo.findFirstByMap(myMap);
-        String url = myMap.getUrl();
-        if (device.isMobile()) {
-            url = url.replace("size=400x500", "size=350x450");
-        } else {
-            url = url.replace("size=250x250", "size=500x500");
-        }
         if (myRun.getDistance() > 7) {
            url = url.replace("zoom=12", "zoom=10");
         } else {

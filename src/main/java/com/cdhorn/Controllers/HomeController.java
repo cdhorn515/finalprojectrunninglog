@@ -1,6 +1,7 @@
 package com.cdhorn.Controllers;
 
 import com.cdhorn.Classes.ApiKey;
+import com.cdhorn.Classes.HelperFx;
 import com.cdhorn.Interfaces.MapRepository;
 import com.cdhorn.Interfaces.UserRepository;
 import com.cdhorn.Models.Map;
@@ -62,15 +63,10 @@ public class HomeController {
             User user = userRepo.findByUsername(principal.getName());
             model.addAttribute("user", user);
         } catch (Exception ex) {}
-        long myMapId = Long.parseLong(mapId);
-        Map myMap = mapRepo.findOne(myMapId);
-        String url = myMap.getUrl();
-        if (device.isMobile()) {
-            url = url.replace("size=400x500", "size=335x475");
-        } else {
 
-            url = url.replace("size=250x250", "size=500x500");
-        }
+        HelperFx helperFx = new HelperFx();
+        Map myMap = helperFx.findMap(mapRepo, mapId);
+        String url = helperFx.getUrl(myMap, device);
         url = url.replace("zoom=12", "zoom=13");
         model.addAttribute("url", url);
         return "map";

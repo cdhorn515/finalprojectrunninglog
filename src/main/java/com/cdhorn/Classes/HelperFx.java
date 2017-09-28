@@ -8,6 +8,7 @@ import com.cdhorn.Models.Map;
 import com.cdhorn.Models.Run;
 import feign.Feign;
 import feign.gson.GsonDecoder;
+import org.springframework.mobile.device.Device;
 
 import java.sql.Time;
 
@@ -51,9 +52,19 @@ public class HelperFx {
         runRepo.save(userRun);
     }
 
+    public Map findMap(MapRepository mapRepo, String mapId) {
+        long myMapId = Long.parseLong(mapId);
+        Map myMap = mapRepo.findOne(myMapId);
+        return myMap;
+    }
 
-//    public Run getRun(String runId, String mapId) {
-//
-//        return
-//    }
+    public String getUrl(Map myMap, Device device) {
+        String url = myMap.getUrl();
+        if (device.isMobile()) {
+            url = url.replace("size=400x500", "size=335x475");
+        } else {
+            url = url.replace("size=250x250", "size=500x500");
+        }
+        return url;
+    }
 }
