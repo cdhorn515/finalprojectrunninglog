@@ -86,7 +86,7 @@ footer {
     width: 50%;
 }
 
-.new-route, .signup-submit, .user-table, .admin-table {
+.new-route, .signup-submit, .login-submit, .user-table, .admin-table {
     margin-bottom: 100px;
 }
 
@@ -201,6 +201,11 @@ footer {
     .signup-form, .login-form, .run-form, .add-run-form{
         width: 100%;
     }
+
+    .login {
+        margin-bottom: 250px;
+    }
+
 
     .pic-of-srt {
         height: 220px;
