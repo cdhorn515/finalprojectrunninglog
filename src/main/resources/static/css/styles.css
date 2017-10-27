@@ -86,6 +86,10 @@ footer {
     width: 50%;
 }
 
+.error-msg {
+    color: #b22222;
+}
+
 .new-route, .signup-submit, .login-submit, .user-table, .admin-table {
     margin-bottom: 100px;
 }
@@ -205,7 +209,7 @@ footer {
     .signup-submit, .login-submit {
         margin-bottom: 250px;
     }
-    
+
     .pic-of-srt {
         height: 220px;
     }
