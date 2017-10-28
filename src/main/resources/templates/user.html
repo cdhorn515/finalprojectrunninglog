@@ -11,29 +11,29 @@
 <div th:include="navbar :: navbar"></div>
 <div class="container">
 
-    <h1 th:inline="text">Welcome, [[${user.first}]]!</h1>
-
-<h3>Your tracked runs:</h3>
+    <h1 th:inline="text">[[${user.first}]]'s tracked runs:</h1>
+<div class="table-background">
+<!--<h3>Your tracked runs:</h3>-->
 
 <div class="table-responsive user-table">
     <table class="table table-condensed">
-        <tr>
-            <th>Date</th>
-            <th>Distance</th>
-            <th>Time</th>
-            <th>Map Link</th>
-            <th sec:authorize="hasRole('ROLE_USER')"></th>
-            <th sec:authorize="hasRole('ROLE_USER')"></th>
+        <tr class="table-header">
+            <th class="run-date table-heading-text">Date</th>
+            <th class="run-distance table-heading-text">Distance</th>
+            <th class="run-time table-heading-text">Time</th>
+            <th class="map-col table-heading-text">Map Link</th>
+            <th class="delete-btn" sec:authorize="hasRole('ROLE_USER')"></th>
+            <th class="update-btn" sec:authorize="hasRole('ROLE_USER')"></th>
         </tr>
         <tr th:each="run : ${userRuns}">
-            <td th:text="${#dates.format(run.date, 'MM-dd-yyyy')}"></td>
-            <td th:text="${run.distance}"></td>
-            <td th:text="${run.time}"></td>
-            <td>
+            <td class="run-date" th:text="${#dates.format(run.date, 'MMM dd, yyyy')}"></td>
+            <td class="run-distance" th:text="${run.distance}"></td>
+            <td class="run-time" th:text="${run.time}"></td>
+            <td class="map-col">
                 <a class="map-link" th:if="${run.map ==null}" href="https://maps.googleapis.com/maps/api/staticmap?zoom=11&amp;size=500x500&amp;markers=size:mid%7Ccolor:red%7C34.85261759999999,-82.3940104">no route provided</a>
                 <a class="map-link" th:if="${run.map !=null}"  th:href="'/displayMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
             </td>
-            <td sec:authorize="hasRole('ROLE_USER')">
+            <td ckass="delete-btn" sec:authorize="hasRole('ROLE_USER')">
                 <form action="/user/deleteRun" method="post">
                     <input type="hidden"
                            th:name="${_csrf.parameterName}"
@@ -42,7 +42,7 @@
                     <input class="btn btn-danger" type="submit" value="Delete"/>
                 </form>
             </td>
-            <td sec:authorize="hasRole('ROLE_USER')">
+            <td class="update-btn" sec:authorize="hasRole('ROLE_USER')">
                 <form th:action="'/user/updateRun/' + ${run.id}" method="get">
                     <input type="hidden"
                            th:name="${_csrf.parameterName}"
@@ -54,11 +54,13 @@
         </tr>
     </table>
     </div>
+</div>
     <div class="col-xs-offset-11 back-button" sec:authorize="hasRole('ROLE_ADMIN')">
     <form action="/admin" method="get">
         <input class="btn btn-default" type="submit" value="Back"/>
     </form>
     </div>
+
 
 </div>
 <div th:include="navbar :: main-footer"></div>

@@ -94,6 +94,33 @@ footer {
     margin-bottom: 100px;
 }
 
+.table-header {
+    height: 40px;
+}
+
+.table-background {
+    background-color: #ECECEC;
+    padding-top: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.table-heading-text {
+    font-size: 20px;
+}
+
+.update-btn {
+    text-align: right;
+}
+
+.update-btn, .delete-btn {
+    width: 10%;
+}
+
+.run-time, .run-distance, .run-time, .map-col {
+    width: 20%;
+}
+
 .age-gender-row {
     margin-top: 8px;
 }
