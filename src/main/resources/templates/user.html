@@ -9,9 +9,10 @@
 <span th:include="includes :: css"></span>
 <body>
 <div th:include="navbar :: navbar"></div>
-<div class="container">
 
+<div class="container">
     <h1 th:inline="text">[[${user.first}]]'s tracked runs:</h1>
+
 <div class="table-background">
 <!--<h3>Your tracked runs:</h3>-->
 
@@ -26,10 +27,10 @@
             <th class="update-btn" sec:authorize="hasRole('ROLE_USER')"></th>
         </tr>
         <tr th:each="run : ${userRuns}">
-            <td class="run-date" th:text="${#dates.format(run.date, 'MMM dd, yyyy')}"></td>
-            <td class="run-distance" th:text="${run.distance}"></td>
-            <td class="run-time" th:text="${run.time}"></td>
-            <td class="map-col">
+            <td class="run-date table-cell-text" th:text="${#dates.format(run.date, 'MMM dd, yyyy')}"></td>
+            <td class="run-distance table-cell-text" th:text="${run.distance}"></td>
+            <td class="run-time table-cell-text" th:text="${run.time}"></td>
+            <td class="map-col table-cell-text">
                 <a class="map-link" th:if="${run.map ==null}" href="https://maps.googleapis.com/maps/api/staticmap?zoom=11&amp;size=500x500&amp;markers=size:mid%7Ccolor:red%7C34.85261759999999,-82.3940104">no route provided</a>
                 <a class="map-link" th:if="${run.map !=null}"  th:href="'/displayMap/' + ${run.map.id}" th:text="${run.map.routeName}"></a>
             </td>
