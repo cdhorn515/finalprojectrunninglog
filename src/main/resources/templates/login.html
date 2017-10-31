@@ -16,7 +16,6 @@
     <h1>Lace up!</h1>
 
     <h4 class="error-msg" th:text="${error}"></h4>
-
     <form class="login-form" th:action="@{/login}" th:object="${user}" method="post">
         <input type="hidden"
                th:name="${_csrf.parameterName}"
@@ -35,7 +34,6 @@
         </div>
         <input class="login login-submit btn btn-default" type="submit" value="Enter"/>
     </form>
-
 </div>
 <div th:include="navbar :: main-footer"></div>
 <span th:include="includes :: js"></span>
