@@ -9,6 +9,11 @@ body {
     color: dimgray;
 }
 
+.logo {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+}
+
 .navbar-link {
     line-height: 50px;
 }
@@ -26,6 +31,7 @@ body {
     background-color: #6e9c58;
     text-align: center;
     margin-top: 50px;
+    border-bottom: 1px solid dimgrey;
 }
 
 .go-running-banner {
@@ -54,6 +60,7 @@ body {
     width: 100vw;
     color: #ECECEC;
     font-family: 'Shadows Into Light', cursive;
+    border-bottom: 1px solid dimgrey;
 }
 
 .user-title, .admin-title {
