@@ -14,25 +14,29 @@ body {
 }
 
 .container {
-    margin-top: 70px;
+    margin-top: 50px;
     height: 100vh;
 }
 
+.admin-container {
+    margin-top: 70px;
+}
+
 .home-banner {
-    /*background-color: #6e9c58;*/
+    background-color: #6e9c58;
     text-align: center;
+    margin-top: 50px;
+
 }
 
 .go-running-banner {
     text-align: center;
     font-size: 50px;
-    font-family: 'Permanent Marker', cursive;
     height: 100px;
     line-height: 100px;
     color: #ECECEC;
     width: 100vw;
-    font-size: 50px;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Shadows Into Light', cursive;
 }
 
 .user-title-bar {
@@ -42,13 +46,17 @@ body {
     width: 100vw;
     color: #ECECEC;
     font-family: 'Shadows Into Light', cursive;
-
 }
 
 .user-title {
     line-height: 80px;
     font-size: 50px;
+}
 
+.fa-line-chart {
+    color: #9AC16C;
+    margin-right: 10px;
+    margin-left: 20px;
 }
 
 .home-heading, .route-heading {
@@ -156,11 +164,11 @@ footer {
 }
 
 .username, .first-name, .last-name, .user-location {
-    width: 15%;
+    width: 16.67%;
 }
 
 .age, .gender {
-    width: 10%;
+    width: 16.66%;
 }
 
 .run-time, .run-distance, .run-time, .map-col {
