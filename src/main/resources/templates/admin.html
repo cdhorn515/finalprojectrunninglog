@@ -10,29 +10,30 @@
 <div th:include="navbar :: navbar"></div>
 <div class="container">
 
-    <h1>User information</h1>
+    <!--<h1>User information</h1>-->
+    <h1 class="admin-h3">Click on username to view user's page:</h1>
     <div class="table-background">
-    <h3 class="admin-h3">Click on username link to view user's page:</h3>
+
 
     <div class="table-responsive admin-table">
         <table class="table table-condensed">
             <tr>
-                <th>Username</th>
-                <th>First</th>
-                <th>Last</th>
-                <th>Gender</th>
-                <th>Age</th>
-                <th>Location</th>
+                <th class="table-heading-text">Username</th>
+                <th class="table-heading-text">First</th>
+                <th class="table-heading-text">Last</th>
+                <th class="table-heading-text">Gender</th>
+                <th class="table-heading-text">Age</th>
+                <th class="table-heading-text">Location</th>
             </tr>
             <tr th:each="user : ${users}">
-                <td>
+                <td class="table-cell-text username">
                 <a th:href="'/admin/user/' + ${user.id}" th:text="${user.username}"></a>
                 </td>
-                <td th:text="${user.first}"></td>
-                <td th:text="${user.last}"></td>
-                <td th:text="${user.gender}"></td>
-                <td th:text="${user.age}"></td>
-                <td> <p th:inline="text"> [[${user.city}]], [[${user.state}]]</p></td>
+                <td class="table-cell-text first-name" th:text="${user.first}"></td>
+                <td class="table-cell-text last-name" th:text="${user.last}"></td>
+                <td class="table-cell-text gender" th:text="${user.gender}"></td>
+                <td class="table-cell-text age" th:text="${user.age}"></td>
+                <td class="table-cell-text user-location"> <p th:inline="text"> [[${user.city}]], [[${user.state}]]</p></td>
             </tr>
         </table>
     </div>

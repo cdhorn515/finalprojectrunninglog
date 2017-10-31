@@ -9,9 +9,11 @@
 <span th:include="includes :: css"></span>
 <body>
 <div th:include="navbar :: navbar"></div>
+<div class="user-title-bar">
+    <h1 class="user-title" th:inline="text">[[${user.first}]]'s tracked runs:</h1>
 
+</div>
 <div class="container">
-    <h1 th:inline="text">[[${user.first}]]'s tracked runs:</h1>
 
 <div class="table-background">
 <!--<h3>Your tracked runs:</h3>-->

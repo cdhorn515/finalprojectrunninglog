@@ -31,6 +31,24 @@ body {
     line-height: 100px;
     color: #ECECEC;
     width: 100vw;
+    font-size: 50px;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.user-title-bar {
+    margin-top: 50px;
+    background-color: #6e9c58;
+    height: 80px;
+    width: 100vw;
+    color: #ECECEC;
+    font-family: 'Shadows Into Light', cursive;
+
+}
+
+.user-title {
+    line-height: 80px;
+    font-size: 50px;
+
 }
 
 .home-heading, .route-heading {
@@ -121,7 +139,8 @@ footer {
 }
 
 .table-heading-text {
-    font-size: 20px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 28px;
 }
 
 .table-cell-text {
@@ -133,6 +152,14 @@ footer {
 }
 
 .update-btn, .delete-btn {
+    width: 10%;
+}
+
+.username, .first-name, .last-name, .user-location {
+    width: 15%;
+}
+
+.age, .gender {
     width: 10%;
 }
 
