@@ -26,7 +26,6 @@ body {
     background-color: #6e9c58;
     text-align: center;
     margin-top: 50px;
-
 }
 
 .go-running-banner {
@@ -37,9 +36,18 @@ body {
     color: #ECECEC;
     width: 100vw;
     font-family: 'Shadows Into Light', cursive;
+    margin: 0 30px;
 }
 
-.user-title-bar {
+.runner-icon {
+    color: #9AC16C;
+}
+
+.runner-space {
+    margin-left: 20px;
+}
+
+.user-title-bar, .admin-title-bar {
     margin-top: 50px;
     background-color: #6e9c58;
     height: 80px;
@@ -48,15 +56,15 @@ body {
     font-family: 'Shadows Into Light', cursive;
 }
 
-.user-title {
+.user-title, .admin-title {
     line-height: 80px;
     font-size: 50px;
 }
 
 .fa-line-chart {
     color: #9AC16C;
-    margin-right: 10px;
-    margin-left: 20px;
+    margin-right: 20px;
+    margin-left: 30px;
 }
 
 .home-heading, .route-heading {
@@ -236,6 +244,18 @@ footer {
         max-width: 100vw;
     }
 
+    .go-running-banner {
+        font-size: 30px;
+        height: 50px;
+        line-height: 50px;
+        margin: 0 16px;
+    }
+
+    .runner-icon-mobile {
+        height: 24px;
+        margin-left: 5px;
+    }
+
     .map-container {
         margin-bottom: 15px;
     }
@@ -253,6 +273,15 @@ footer {
 
     .home-heading {
         font-size: 32px;
+    }
+
+    .table-heading-text {
+        font-size: 18px;
+    }
+
+    .user-title {
+        line-height: 40px;
+        font-size: 26px;
     }
 
     .which-way-pic, .start-pic, .login-pic {
@@ -279,7 +308,8 @@ footer {
         font-size: 32px;
     }
 
-    .admin-h3 {
+    .admin-title {
+        line-height: 40px;
         font-size: 17px;
     }
 
