@@ -77,8 +77,10 @@ public class RunController {
                             @RequestParam("date") String date,
                             @RequestParam("distance") float distance,
                             @RequestParam("time") String time) throws Exception {
+        String[] dateArray = date.split("-");
+        String orderedDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
         Run userRun = runRepo.findOne(id);
-        java.util.Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        java.util.Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(orderedDate);
         userRun.setDate(runDate);
         HelperFx helperFx = new HelperFx();
         helperFx.setRunData(time, distance, userRun, runRepo);
