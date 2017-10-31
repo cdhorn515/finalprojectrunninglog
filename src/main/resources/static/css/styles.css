@@ -6,16 +6,21 @@
 
 body {
     background-color: #9AC16C;
-    color: dimgray;
+    color: #16210f;
 }
 
 .logo {
     font-family: 'Shadows Into Light', cursive;
     font-size: 30px;
+    color: #16210f!important;
 }
 
 .navbar-link {
     line-height: 50px;
+}
+
+.btn-link {
+    color: #16210f!important;
 }
 
 .container {
