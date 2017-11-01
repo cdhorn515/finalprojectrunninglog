@@ -16,8 +16,6 @@
 
         <h2 class="route-end-h2">Enter your route ending point</h2><h4>(use street address or point of interest):</h4>
 
-
-
     <form class="add-run-form" th:action="'/map/' + ${runId} + '/routeEnd/' + ${mapId}" method="post">
 
     <input type="hidden"
@@ -34,7 +32,6 @@
 </div>
         <input class="add-end btn btn-default" type="submit" value="Add end location"/>
     </form>
-
 
 </div>
 <div th:include="navbar :: main-footer"></div>

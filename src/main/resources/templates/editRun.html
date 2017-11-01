@@ -10,7 +10,6 @@
 <body>
 <div th:include="navbar :: navbar"></div>
 <div class="container">
-    <!--<h1>Edit run:</h1>-->
     <h3>Made a mistake? Correct it here, we won't tell!</h3>
 
             <form class="run-form" th:action="'/user/updateRun/' + ${run.id}" method="post">
