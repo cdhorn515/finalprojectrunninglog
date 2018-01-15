@@ -1,5 +1,5 @@
 
-# Running Routes
+# Running Routes 🏃‍♀️ :runner:
 
 As a runner, I wanted to build an app to allow myself and other runners to keep track of our running activity and share local running routes, since it's always great to find new places to explore. Runners can log in to their own personal page, add data about their runs, and save their routes. Users can choose routes they have saved or create new routes for each run added. Routes are saved as a url link which when clicked on will display a Google map with the start and endpoint and the route outlined.
 
