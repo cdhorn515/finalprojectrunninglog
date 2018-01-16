@@ -1,6 +1,18 @@
 
 # Running Routes 🏃‍♀️ :runner:
 
+### Built with:
+
+* Maven
+* Java 8 (JDK 1.8.131)
+* Spring Boot/Spring Security/Spring Mobile
+* BCrypt
+* HTML5
+* CSS3
+* Thymeleaf
+* Bootstrap
+* PostgresSQL
+
 As a runner, I wanted to build an app to allow myself and other runners to keep track of our running activity and share local running routes, since it's always great to find new places to explore. 
 
 This project is deployed using AWS Elastic Beanstalk and can be viewed [here](http://runninglog-env.3npbd4agqq.us-east-2.elasticbeanstalk.com/). Use the following if you want to log in and view the admin section: 
@@ -8,8 +20,6 @@ This project is deployed using AWS Elastic Beanstalk and can be viewed [here](ht
 `username: admin password: Runadm!n`
 
 ## Run this project locally
-
-This project was built using **Java 8** and **JDK 1.8.131**
 
 You will need to create a Postgres database 
 
@@ -67,7 +77,7 @@ CREATE TABLE user_data (
 cd /src/main/resources
 touch application.properties
 ```
-Open this file using your favorite text editor and add the following:
+* Open this file using your favorite text editor and add the following:
 
 ```
 spring.thymeleaf.cache=false
@@ -77,9 +87,9 @@ spring.datasource.username=[your-database-username](if applicable)
 spring.datasource.password=[your-database-password](if applicable)
 ```
  
- You will need to generate 3 Google Maps API keys. These are free and can be generated through the directions found at the following links: [Static Maps](https://developers.google.com/maps/documentation/static-maps/),[Directions](https://developers.google.com/maps/documentation/directions/), [Geocoding](https://developers.google.com/maps/documentation/geocoding/start).
+ * You will need to generate 3 Google Maps API keys. These are free and can be generated through the directions found at the following links: [Static Maps](https://developers.google.com/maps/documentation/static-maps/), [Directions](https://developers.google.com/maps/documentation/directions/), [Geocoding](https://developers.google.com/maps/documentation/geocoding/start).
  
- Back in your **templates** directory create another file called apikey.properties. Open this file in your text editor and add the following, placing your Google Maps API keys where indicated:
+ * Back in your **templates** directory create another file called apikey.properties. Open this file in your text editor and add the following, placing your Google Maps API keys where indicated:
  
  ```
 STATIC_MAP_KEY=[your Google Maps API Static Maps key]
@@ -101,7 +111,7 @@ CONESTEE_URL=https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=500x500
 * Run `mvn clean package` from your project directory (this will build the project and create a jar file in the target directory).
 
 
-To run the project type: `java -jar target/finalproject-0.0.1-SNAPSHOT.jar`, then open a browser window and go to `localhost:8080`.
+* To run the project type: `java -jar target/finalproject-1.1.25-RELEASE.jar`, then open a browser window and go to `localhost:8080`.
 
 ### About this application
 
