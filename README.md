@@ -15,6 +15,7 @@ password: Runadm!n
 * Maven
 * Java 8 (JDK 1.8.131)
 * Spring Boot/Spring Security/Spring Mobile
+* Netflix Feign [docs](https://github.com/OpenFeign/feign)
 * BCrypt
 * HTML5
 * CSS3
@@ -125,7 +126,7 @@ Visitors to the site are able to see routes that have been made public by the us
 
 An admin has the ability to see demographic information about the users who have signed up, and can view each users home page. Admins are not allowed to update or delete user run information, but can see the routes a user has created.
 
-This app was built in **Java 8** using **Spring Boot**, with a **PostgreSQL** database managed using **JPA**. Spring security was used for authenitication/authorization of the endpoints, and **BCrypt** was used to encrypt passwords.  **Netflix's Feign** *HTTP client* was used to make requests to Google's *Geocoding* and *Directions API*, and information from the response received fromt those requests was used to create the url for Google's *Static Map API* which when passed to the HTML template, displays the map. 
+This app was built in **Java 8** using **Spring Boot**, with a **PostgreSQL** database managed using **JPA**. Spring security was used for authenitication/authorization of the endpoints, and **BCrypt** was used to encrypt passwords.  **Netflix Feign** *Java to HTTP* client binder was used to make requests to Google's *Geocoding* and *Directions API*, and information from the response received fromt those requests was used to create the url for Google's *Static Map API* which when passed to the HTML template, displays the map. 
 
 **Thymeleaf** was used to display dynamic information on the page, and **Thymeleaf Security** was also used to display information depending on the type of user. **Bootstrap** and **CSS** used for styling.
 
