@@ -1,8 +1,6 @@
 
 # Running Routes 🏃‍♀️ :runner:
 
-## About
-
 As a runner, I wanted to build an app to allow myself and other runners to keep track of our running activity and share local running routes, since it's always great to find new places to explore. 
 
 This project is deployed using AWS Elastic Beanstalk and can be viewed [here](http://runninglog-env.3npbd4agqq.us-east-2.elasticbeanstalk.com/). Use the following if you want to log in and view the admin section: 
