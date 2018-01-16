@@ -1,7 +1,7 @@
 
 # Running Routes 🏃‍♀️ :runner:
 
-As a runner, I wanted to build an app to allow myself and other runners to keep track of our running activity and share local running routes, since it's always great to find new places to explore. Runners can log in to their own personal page, add data about their runs, and save their routes. Users can choose routes they have saved or create new routes for each run added. Routes are saved as a url link which when clicked on will display a Google map with the start and endpoint and the route outlined.
+As a runner, I wanted to build an app to allow myself and other runners to keep track of our running activity and share local running routes, since it's always great to find new places to explore. 
 
 This project is deployed using AWS Elastic Beanstalk and can be viewed [here](http://runninglog-env.3npbd4agqq.us-east-2.elasticbeanstalk.com/). Use the following if you want to log in and view the admin section: 
 
@@ -77,7 +77,7 @@ spring.datasource.username=[your-database-username](if applicable)
 spring.datasource.password=[your-database-password](if applicable)
 ```
  
- You will need to generate 3 Google Maps Api keys. These are free and can be generated through the directions found at the following links: [Static Maps](https://developers.google.com/maps/documentation/static-maps/),[Directions](https://developers.google.com/maps/documentation/directions/), [Geocoding](https://developers.google.com/maps/documentation/geocoding/start).
+ You will need to generate 3 Google Maps API keys. These are free and can be generated through the directions found at the following links: [Static Maps](https://developers.google.com/maps/documentation/static-maps/),[Directions](https://developers.google.com/maps/documentation/directions/), [Geocoding](https://developers.google.com/maps/documentation/geocoding/start).
  
  Back in your **templates** directory create another file called apikey.properties. Open this file in your text editor and add the following, placing your Google Maps API keys where indicated:
  
@@ -105,7 +105,7 @@ To run the project type: `java -jar target/finalproject-0.0.1-SNAPSHOT.jar`, the
 
 ### About this application
 
-Users can also delete or update information about their run (date, distance, and time). 
+Runners can log in to their own personal page, add data about their runs, and save their routes. Logged in runners can also delete or update information about their run (date, distance, and time), and can choose routes they have previously saved or create new routes for each run added. Routes are saved as a url link which when clicked on will display a Google map with the start and endpoint and the route outlined.
 
 Visitors to the site are able to see routes that have been made public by the users, and can click on the map to be taken to a page with the map displayed larger and zoomed in.
 
