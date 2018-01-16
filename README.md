@@ -15,7 +15,7 @@ password: Runadm!n
 * Maven
 * Java 8 (JDK 1.8.131)
 * Spring Boot/Spring Security/Spring Mobile
-* Netflix Feign [docs](https://github.com/OpenFeign/feign)
+* Netflix Feign [(link to documentation)](https://github.com/OpenFeign/feign)
 * BCrypt
 * HTML5
 * CSS3
