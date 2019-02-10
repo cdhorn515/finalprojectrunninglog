@@ -19,14 +19,15 @@
                 <div class="col-md-3 col-xs-8">
                     <label for="map_id">Route:</label>
                     <select name="map_id" class="form-control" id="map_id">
-                        <option>-------</option>
+                        <option disabled="disabled" >-------</option>
                         <option th:value="${map.id}" th:each="map : ${myMaps}"
                                 th:text="${map.routeName}"></option>
                     </select>
                 </div>
             </div>
             <div>
-                <input class="select-route btn btn-default" type="submit" value="Add route"/>
+                <input class="select-route btn btn-default" type="submit" value="Add route"
+                       th:disabled="${myMaps.isEmpty()}"/>
             </div>
         </div>
     </form>
